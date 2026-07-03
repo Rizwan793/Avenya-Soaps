@@ -1,297 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Avenya - Luxury handmade organic soaps crafted in small batches with botanical oils and raw therapeutic extracts. Premium, minimal, and pure.">
-  <title>Avenya | Luxury Artisanal Handmade Soaps</title>
-  
-  <!-- FontAwesome Icons for UI -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avenya Soaps | Luxury Handcrafted Botanical Skincare</title>
+    <!-- Premium Fonts Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons Script -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Our Custom Style Sheet -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Header Section -->
-  <header id="header">
-    <div class="nav-container">
-      <a href="#" class="logo" id="logo-brand">Avenya<span>.</span></a>
-      
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#philosophy">Philosophy</a></li>
-          <li><a href="#shop">Shop</a></li>
-          <li><a href="#footer">Contact</a></li>
-        </ul>
-      </nav>
-      
-      <div class="nav-actions">
-        <button class="cart-icon-btn" id="cart-toggle-btn" aria-label="Open Cart">
-          <i class="fa-solid fa-bag-shopping" style="color: var(--color-forest); font-size: 1.25rem;"></i>
-          <span class="cart-count" id="cart-badge-count">0</span>
-        </button>
-        <a href="#shop" class="btn-nav-shop" id="nav-shop-cta">Shop Now</a>
-      </div>
-    </div>
-  </header>
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-background"></div>
-    
-    <!-- Floating background decorative shapes -->
-    <div class="floating-element deco-circle float-slow"></div>
-    <div class="floating-element deco-leaf float-medium"></div>
-    
-    <div class="hero-container">
-      <!-- Hero Text Content -->
-      <div class="hero-content">
-        <p class="hero-tagline">Botanical • Artisanal • Cold-Processed</p>
-        <h1 class="hero-title">Poetry <em>for</em> your skin<span>.</span></h1>
-        <p class="hero-description">Indulge in Avenya's luxury handmade soaps. Crafted in small batches with pure raw plant extracts, therapeutic essential oils, and organic moisturizing clays.</p>
-        <div class="hero-actions">
-          <a href="#shop" class="btn-luxury-primary">Explore Shop</a>
-          <a href="#philosophy" class="btn-luxury-secondary">Our Story</a>
+
+    <!-- Luxury Floating Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <span class="logo-title">Avenya</span>
+                <span class="logo-subtitle">Soaps</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#shop">The Apothecary</a>
+                <a href="#story">Our Story</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="cart-btn">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <a href="#shop" class="cta-btn">Conscious Luxury</a>
+            </div>
         </div>
-      </div>
-      
-      <!-- Hero Visuals -->
-      <div class="hero-visual">
-        <div class="image-frame-luxury">
-          <div class="hero-img-wrapper">
-            <img src="assets/hero.jpg" alt="Avenya Luxury Handmade Soap Bar on Travertine Stone" id="hero-img">
-          </div>
-          <!-- Floating Badge -->
-          <div class="hero-badge float-slow">
-            <p class="hero-badge-title">Artisanal Curing</p>
-            <p class="hero-badge-text">6 Weeks Aged</p>
-          </div>
+    </header>
+
+    <!-- Luxury Hero Entrance Section -->
+    <section class="hero">
+        <div class="hero-bg-text">Botanical</div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-tagline">Artisanal · Cold Pressed · Pure Organic</span>
+                <h1 class="hero-title">The Art of <br><span class="italic-accent">Pure Bathing.</span></h1>
+                <p class="hero-description">
+                    Indulge your skin in the sensory luxury of hand-poured botanical bars. Formulated sequentially with rare essential oils, organic bases, and pure plant science.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn-primary">Explore Collection</a>
+                    <a href="#story" class="btn-secondary">Our Craftsmanship</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="card-media-placeholder">
+                        <span class="placeholder-text">Signature Formulation</span>
+                    </div>
+                    <div class="card-badge">
+                        <div>
+                            <p class="badge-tag">Signature Bar</p>
+                            <h4 class="badge-title">Golden Sandalwood</h4>
+                        </div>
+                        <span class="badge-price">₹650</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- Brand Philosophy Section -->
-  <section class="philosophy" id="philosophy">
-    <div class="section-container">
-      <div class="section-intro">
-        <p class="section-tagline">Natural Sophistication</p>
-        <h2 class="section-title">Nurture Your Skin <span>Without Compromise</span></h2>
-      </div>
-      
-      <div class="philosophy-grid">
-        <!-- Card 1 -->
-        <div class="philosophy-card">
-          <div class="philosophy-icon">
-            <i class="fa-solid fa-droplet"></i>
-          </div>
-          <h3 class="philosophy-card-title">Botanical Infusions</h3>
-          <p class="philosophy-card-desc">Sourced from pristine local organic farms. Extra virgin olive oil, creamy shea butter, and pure coconut oil create a rich, conditioning lather.</p>
+    </section>
+
+    <!-- Brand Narrative Section -->
+    <section class="story-section" id="story">
+        <div class="story-container">
+            <div class="story-content">
+                <span class="section-tag">Our Craftsmanship</span>
+                <h2 class="section-title">Formulated by Nature, <br><span class="italic-accent">Poured by Hand.</span></h2>
+                <p class="story-text">
+                    Every batch of Avenya Soaps is curated through an ancient cold-process technique that preserves the nutritional integrity of our organic ingredients. Over a meticulous 6-week curing cycle, each bar develops a deeply moisturizing, natural glycerin lather that commercial processes strip away.
+                </p>
+                <div class="story-metrics">
+                    <div class="metric">
+                        <h3>100%</h3>
+                        <p>Biodegradable Bases</p>
+                    </div>
+                    <div class="metric">
+                        <h3>Zero</h3>
+                        <p>Synthetic Fragrances</p>
+                    </div>
+                </div>
+            </div>
+            <div class="story-visual">
+                <div class="story-image-box">
+                    <span class="placeholder-text">Cinematic Visual:<br>Curing the Botanical Blocks</span>
+                </div>
+            </div>
         </div>
-        
-        <!-- Card 2 -->
-        <div class="philosophy-card">
-          <div class="philosophy-icon">
-            <i class="fa-solid fa-leaf"></i>
-          </div>
-          <h3 class="philosophy-card-title">Pure Clays & Herbs</h3>
-          <p class="philosophy-card-desc">Naturally colored with nutrient-dense French pink clay, botanical powders, and activated charcoal to detoxify and nourish the skin dermis.</p>
+    </section>
+
+    <!-- Real-time Filterable Luxury Shop Matrix -->
+    <section class="shop-section" id="shop">
+        <div class="shop-header">
+            <span class="section-tag">Curated Exclusives</span>
+            <h2 class="section-title">The Apothecary</h2>
+            
+            <!-- Search Bar Input Control -->
+            <div class="search-box">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" id="soap-search" placeholder="Search botanical blends..." onkeyup="filterProducts()">
+            </div>
         </div>
-        
-        <!-- Card 3 -->
-        <div class="philosophy-card">
-          <div class="philosophy-icon">
-            <i class="fa-solid fa-wind"></i>
-          </div>
-          <h3 class="philosophy-card-title">True Aromatherapy</h3>
-          <p class="philosophy-card-desc">Scented purely with steam-distilled essential oils like tea tree, lavender, and lemongrass. Free from synthetic chemicals and artificial fragrances.</p>
+
+        <div class="product-grid" id="product-grid">
+            <!-- Product Item 1 -->
+            <div class="product-card" data-name="kashmiri saffron oud">
+                <div class="product-media">
+                    <span class="media-tag">Avenya Botanical Bar</span>
+                </div>
+                <div class="product-details">
+                    <div class="stars">
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <span class="rating-text">(4.9)</span>
+                    </div>
+                    <h3 class="product-title">Kashmiri Saffron & Oud</h3>
+                    <p class="product-desc">Infused with cold-pressed sweet almond oil and premium Kashmiri saffron threads.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹750</span>
+                        <button class="add-to-cart">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 2 -->
+            <div class="product-card" data-name="malabar lemongrass twirl">
+                <div class="product-media">
+                    <span class="media-tag">Avenya Botanical Bar</span>
+                </div>
+                <div class="product-details">
+                    <div class="stars">
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon"></i>
+                        <span class="rating-text">(4.8)</span>
+                    </div>
+                    <h3 class="product-title">Malabar Lemongrass Twirl</h3>
+                    <p class="product-desc">An invigorating herbal bar packed with crushed lemongrass leaves.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹580</span>
+                        <button class="add-to-cart">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 3 -->
+            <div class="product-card" data-name="damask rose french pink clay">
+                <div class="product-media">
+                    <span class="media-tag">Avenya Botanical Bar</span>
+                </div>
+                <div class="product-details">
+                    <div class="stars">
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <i data-lucide="star" class="star-icon fill"></i>
+                        <span class="rating-text">(5.0)</span>
+                    </div>
+                    <h3 class="product-title">Damask Rose & French Clay</h3>
+                    <p class="product-desc">Deeply clarifying, ultra-nourishing bar formulated for delicate facial skin.</p>
+                    <div class="product-footer">
+                        <span class="product-price">₹680</span>
+                        <button class="add-to-cart">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- Collection / Shop Section -->
-  <section class="shop-section" id="shop">
-    <div class="section-container">
-      <div class="section-intro">
-        <p class="section-tagline">Artisanal Bar Soaps</p>
-        <h2 class="section-title">The <span>Avenya</span> Collection</h2>
-      </div>
-      
-      <!-- Filter Bar -->
-      <div class="shop-filter-bar">
-        <button class="filter-btn active" data-filter="all">All Bars</button>
-        <button class="filter-btn" data-filter="hydrating">Hydrating</button>
-        <button class="filter-btn" data-filter="detoxifying">Detoxifying</button>
-        <button class="filter-btn" data-filter="soothing">Soothing</button>
-      </div>
-      
-      <!-- Product Grid -->
-      <div class="product-grid" id="product-grid-container">
-        <!-- Products will be dynamically populated by JavaScript -->
-      </div>
-    </div>
-  </section>
-  <!-- Instagram Social Call to Action -->
-  <section class="cta-instagram">
-    <div class="section-container">
-      <p class="section-tagline">Follow Our Journey</p>
-      <h2 class="section-title" style="margin-bottom: 20px;">@AvenyaBotanicals</h2>
-      <p style="color: var(--color-text-muted); max-width: 500px; margin: 0 auto; font-weight: 300;">Step into our slow, natural curing rooms. Share your rituals using the hashtag #AvenyaRitual.</p>
-      
-      <div class="insta-gallery">
-        <div class="insta-item">
-          <img src="assets/soap_sage.jpg" alt="Botanical Soap Curing">
-          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+    </section>
+
+    <!-- Luxury Brand Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="font-serif">Avenya</span>
+                <span class="sub-footer-brand">Soaps</span>
+                <p>Crafting luxury, organic botanical cleansing matrices with absolute attention to detail.</p>
+            </div>
+            <div class="footer-credits">
+                <span>© 2026 Avenya Soaps Inc. All rights reserved.</span>
+                <span>CONSCIOUS LUXURY WORLDWIDE</span>
+            </div>
         </div>
-        <div class="insta-item">
-          <img src="assets/soap_lavender.jpg" alt="Oatmeal Milk Soap Textures">
-          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
-        </div>
-        <div class="insta-item">
-          <img src="assets/soap_charcoal.jpg" alt="Raw Volcanic Soap Detail">
-          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
-        </div>
-        <div class="insta-item">
-          <img src="assets/soap_rose.jpg" alt="Rose Clay Petals Soap bar">
-          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Footer Section -->
-  <footer id="footer">
-    <div class="footer-grid">
-      <!-- Footer Brand Column -->
-      <div>
-        <a href="#" class="footer-logo">Avenya<span>.</span></a>
-        <p class="footer-desc">Crafting slow-made, premium organic skincare products to reconnect your self-care rituals back with the natural world.</p>
-      </div>
-      
-      <!-- Footer Links Column -->
-      <div>
-        <h4 class="footer-title">Navigation</h4>
-        <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#philosophy">Philosophy</a></li>
-          <li><a href="#shop">Shop Soap Bars</a></li>
-          <li><a href="#footer">Contact Details</a></li>
-        </ul>
-      </div>
-      
-      <!-- Footer Legal Column -->
-      <div>
-        <h4 class="footer-title">Inquiries</h4>
-        <ul class="footer-links">
-          <li><a href="#footer">Custom Corporate Gifting</a></li>
-          <li><a href="#footer">Wholesale Orders</a></li>
-          <li><a href="#footer">Shipping & Returns</a></li>
-          <li><a href="#footer">Ingredients Glossary</a></li>
-        </ul>
-      </div>
-      
-      <!-- Footer Contact Column -->
-      <div>
-        <h4 class="footer-title">Apothecary Studio</h4>
-        <div class="footer-info-row">
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Avenya Labs, Botanical Estate,<br>Cochin, Kerala, India</span>
-        </div>
-        <div class="footer-info-row">
-          <i class="fa-solid fa-phone"></i>
-          <span>+91 9744959412</span>
-        </div>
-        <div class="footer-info-row">
-          <i class="fa-solid fa-envelope"></i>
-          <span>studio@avenya.com</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2026 Avenya Botanicals. All Rights Reserved.</p>
-      <p>Luxury Artisanal Skincare.</p>
-    </div>
-  </footer>
-  <!-- Shopping Cart Side Drawer -->
-  <div class="cart-overlay" id="cart-drawer-overlay"></div>
-  <div class="cart-drawer" id="cart-drawer-panel">
-    <div class="cart-header">
-      <h3 class="cart-header-title">Your Basket</h3>
-      <button class="btn-close-cart" id="cart-close-btn" aria-label="Close Cart">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-    </div>
-    
-    <!-- Cart Items List Container -->
-    <div class="cart-items-list" id="cart-items-container">
-      <!-- Populated dynamically via JS -->
-    </div>
-    
-    <!-- Cart Footer Summary & Checkout -->
-    <div class="cart-footer">
-      <div class="cart-subtotal-row">
-        <span class="subtotal-label">Subtotal</span>
-        <span class="subtotal-price" id="cart-subtotal-val">₹0.00</span>
-      </div>
-      <button class="btn-checkout-whatsapp" id="checkout-whatsapp-btn">
-        <i class="fa-brands fa-whatsapp"></i> Inquire via WhatsApp
-      </button>
-    </div>
-  </div>
-  <!-- Product Detail Modal Overlay -->
-  <div class="detail-modal-overlay" id="product-detail-modal">
-    <div class="detail-modal-container">
-      <button class="btn-close-modal" id="modal-close-btn" aria-label="Close Details">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      
-      <!-- Modal Left: Product Image -->
-      <div class="modal-visual">
-        <img src="" alt="" id="modal-product-image">
-      </div>
-      
-      <!-- Modal Right: Product Details -->
-      <div class="modal-content">
-        <p class="modal-category" id="modal-product-category"></p>
-        <h3 class="modal-title" id="modal-product-title"></h3>
-        <p class="modal-price" id="modal-product-price"></p>
-        <p class="modal-desc" id="modal-product-desc"></p>
-        
-        <div class="modal-details">
-          <div class="modal-detail-row">
-            <span class="modal-detail-label">Key Benefits:</span>
-            <span class="modal-detail-value" id="modal-product-benefits"></span>
-          </div>
-          <div class="modal-detail-row">
-            <span class="modal-detail-label">Skin Type:</span>
-            <span class="modal-detail-value" id="modal-product-skin"></span>
-          </div>
-          <div class="modal-detail-row">
-            <span class="modal-detail-label">Weight:</span>
-            <span class="modal-detail-value" id="modal-product-weight">120g e</span>
-          </div>
-          <div class="modal-detail-row">
-            <span class="modal-detail-label">Ingredients:</span>
-            <span class="modal-detail-value" id="modal-product-ingredients" style="font-style: italic; font-size: 0.8rem;"></span>
-          </div>
-        </div>
-        
-        <div class="modal-actions">
-          <button class="btn-luxury-primary" id="modal-add-to-cart" style="width: 100%; text-align: center;">
-            Add to Basket
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Permanent Floating WhatsApp Enquiry Badge -->
-  <div class="whatsapp-badge" id="floating-whatsapp-badge" role="button" aria-label="WhatsApp Inquiry">
-    <div class="whatsapp-badge-icon">
-      <i class="fa-brands fa-whatsapp"></i>
-    </div>
-    <span class="whatsapp-badge-text">Inquire with Avenya</span>
-  </div>
-  <!-- Custom JavaScript Logic -->
-  <script src="app.js"></script>
+    </footer>
+
+    <!-- Initialize Vector Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <!-- Our Custom App Engine -->
+    <script src="js/app.js"></script>
 </body>
 </html>
