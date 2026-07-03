@@ -3,71 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avenya Soaps | Handcrafted Luxury</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>SÀVON - Luxury Handmade Soaps</title>
+    <style>
+        :root {
+            --bg-color: #0b0a09;
+            --accent-gold: #d4af37;
+            --text-light: #f5f2eb;
+            --text-muted: #a39e93;
+            --panel-bg: rgba(26, 24, 22, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cinzel', 'Didot', 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            overflow-x: hidden;
+            height: 200vh; /* Extra height to demonstrate the scroll image swap */
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 3px;
+        }
+
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(11,10,9,0.8), transparent);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            transition: color 0.4s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Container --- */
+        .hero-container {
+            position: fixed; /* Keeps hero layout locked during scroll effects */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            padding: 0 4% 0 6%;
+            z-index: 1;
+            pointer-events: none; /* Let scroll pass through to body */
+        }
+
+        .hero-left, .hero-right {
+            pointer-events: auto; /* Re-enable pointer events for interactive elements */
+        }
+
+        /* --- Left Column: Typography & CTA --- */
+        .hero-left {
+            max-width: 650px;
+            z-index: 5;
+        }
+
+        .sub-tag {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .main-title span {
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 3.5rem;
+            font-family: system-ui, -apple-system, sans-serif; /* Cleaner body font */
+            font-weight: 300;
+        }
+
+        /* --- Floating Interactive Button --- */
+        .cta-wrapper {
+            display: inline-block;
+            perspective: 1000px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.2rem 2.8rem;
+            border: 1px solid var(--accent-gold);
+            background: transparent;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                        box-shadow 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+        }
+
+        /* Floating Shadow/Glow effect on proximity/hover */
+        .cta-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-color);
+            font-weight: bold;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25);
+        }
+
+        /* --- Right Column: Scrolling Visuals --- */
+        .hero-right {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .display-stage {
+            width: 85%;
+            height: 90%;
+            background: var(--panel-bg);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image {
+            position: absolute;
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .product-image.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Ambient background glow behind the active product stage */
+        .ambient-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Subtle indicator to scroll */
+        .scroll-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 6%;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+            z-index: 5;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(5px); }
+            100% { opacity: 0.3; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">AVENYA</div>
+    <!-- Scroll Helper Text -->
+    <div class="scroll-hint">Scroll down to view textures</div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">SÀVON</div>
         <ul class="nav-links">
-            <li><a href="#collections">Collections</a></li>
-            <li><a href="#wholesale">Wholesale</a></li>
-            <li><a href="#story">Our Story</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#bespoke">Bespoke</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="nav-cta">
-            <button class="btn-ghost">Shop</button>
-            <button class="btn-gold">Consultation</button>
-        </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <span class="tagline">Artisanal · Cold Pressed · Pure Organic</span>
-            <h1>The Art of <br><span class="italic">Pure Bathing</span></h1>
-            <p>Handcrafted using premium botanical ingredients for an elegant skincare experience.</p>
-            <div class="hero-actions">
-                <button class="btn-gold">Explore Collection</button>
+    <!-- Main Hero Setup -->
+    <div class="hero-container">
+        <!-- Text details -->
+        <div class="hero-left">
+            <p class="sub-tag">The Art of Bathing</p>
+            <h1 class="main-title">Botanical <span>Moda</span></h1>
+            <p class="description">
+                Exquisite raw ingredients hand-poured into organic sculptural masterpieces. 
+                Uncompromising luxury designed to restore balance and nurture your skin with natural sophistication.
+            </p>
+            
+            <!-- Dynamic Proximity CTA -->
+            <div class="cta-wrapper" id="magnetic-area">
+                <button class="cta-btn" id="magnetic-btn">Discover the Collection</button>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="floating-card"></div>
-        </div>
-    </header>
 
-    <section id="collections" class="collection-section">
-        <span class="section-tag">Featured Series</span>
-        <h2>Curated Apothecary</h2>
-        <div class="product-grid">
-            <!-- Luxury Product Card -->
-            <div class="product-card">
-                <div class="img-container"></div>
-                <div class="product-info">
-                    <h3>Golden Sandalwood</h3>
-                    <p>₹850</p>
-                    <button class="btn-text">View Details →</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="img-container"></div>
-                <div class="product-info">
-                    <h3>Damask Rose</h3>
-                    <p>₹920</p>
-                    <button class="btn-text">View Details →</button>
-                </div>
+        <!-- Scroll-driven image container -->
+        <div class="hero-right">
+            <div class="ambient-glow"></div>
+            <div class="display-stage">
+                <!-- Fallback unsplash image alternatives demonstrating premium aesthetics -->
+                <img src="https://images.unsplash.com/photo-1607006342456-ba274cb226ef?auto=format&fit=crop&w=800&q=80" alt="Luxury Soap Variant One" class="product-image active" id="img1">
+                <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=800&q=80" alt="Luxury Soap Variant Two" class="product-image" id="img2">
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="wholesale" class="wholesale-section">
-        <div class="wholesale-content">
-            <span class="section-tag">Partnerships</span>
-            <h2>Conscious Luxury, Scaled.</h2>
-            <p>From boutique resorts to high-end spa retailers, we supply bespoke botanical cleansing matrices.</p>
-            <button class="btn-gold">Become a Wholesale Partner</button>
-        </div>
-    </section>
+    <script>
+        /* --- 1. Proximity Zoom & Float Effect (Magnetic Button) --- */
+        const btn = document.getElementById('magnetic-btn');
+        const area = document.getElementById('magnetic-area');
 
+        document.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            // Find center coordinates of the button
+            const btnX = rect.left + rect.width / 2;
+            const btnY = rect.top + rect.height / 2;
+            
+            // Calculate distance between cursor and button center
+            const distanceX = e.clientX - btnX;
+            const distanceY = e.clientY - btnY;
+            const distance = Math.hypot(distanceX, distanceY);
+
+            // Proximity threshold trigger range (closer = more dramatic effect)
+            if (distance < 180) {
+                // Scaling up and shifting coordinates towards the cursor organically
+                const strength = 25; 
+                const x = (distanceX / 180) * strength;
+                const y = (distanceY / 180) * strength;
+                
+                btn.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
+                btn.style.boxShadow = `0 25px 50px rgba(212, 175, 55, 0.3)`;
+            } else {
+                // Return smoothly to rest position
+                btn.style.transform = `translate(0px, 0px) scale(1)`;
+                btn.style.boxShadow = `0 10px 30px rgba(0, 0, 0, 0.5)`;
+            }
+        });
+
+        /* --- 2. Smooth Image Interchanging via Scrolling --- */
+        const img1 = document.getElementById('img1');
+        const img2 = document.getElementById('img2');
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const triggerPoint = window.innerHeight * 0.35; // Swap halfway down
+
+            if (scrollPos > triggerPoint) {
+                if (img1.classList.contains('active')) {
+                    img1.classList.remove('active');
+                    img2.classList.add('active');
+                }
+            } else {
+                if (img2.classList.contains('active')) {
+                    img2.classList.remove('active');
+                    img1.classList.add('active');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
