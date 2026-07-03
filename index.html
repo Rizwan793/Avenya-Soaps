@@ -3,790 +3,407 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SÀVON - Luxury Handmade Soaps</title>
+    <title>Avenya Soaps - Hero Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
-      :root {
-    --bg-color: #fcfbfa;       /* Soft, creamy organic off-white */
-    --panel-bg: #f5f3ef;       /* Warm linen / oatmeal tone for containers */
-    --accent-gold: #c29d38;    /* Deep, rich burnished luxury gold */
-    --text-light: #2c2a29;     /* Deep charcoal (instead of harsh black) for elegant readability */
-    --text-muted: #6e7065;     /* Soft botanical sage/slate gray for subtitles and details */
-    --accent-sage: #8fa18d;    /* Extra: Light earthy sage green for soft shadows/glows */
-}
+        /* --- Reset & Base Styles --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Cinzel', 'Didot', 'Playfair Display', serif;
         }
 
-     body {
-    background-color: var(--bg-color);
-    color: var(--text-light);
-    overflow-x: hidden;
-}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #12100c; /* Dark baseline fallback */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-/* --- Navigation Bar --- */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 2rem 4%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    /* Soft light gradient instead of dark gradient */
-    background: linear-gradient(to bottom, rgba(252, 251, 250, 0.9), transparent);
-    backdrop-filter: blur(8px);
-}
+        /* --- Hero Container with Background Image & Glow --- */
+        .hero-container {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            /* Utilizing the provided image_3c629f.jpg */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url('image_3c629f.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
 
-/* Nav link hover color & floating shadow upgrade */
-.nav-link-btn.hovered {
-    color: var(--accent-gold);
-    background-color: rgba(143, 161, 141, 0.15); /* Soft sage hint */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* Light, soft shadow */
-}
-
-/* --- Hero Main CTA Button --- */
-.cta-btn {
-    display: inline-block;
-    padding: 1.2rem 2.8rem;
-    border: 1px solid var(--accent-gold);
-    background: transparent;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: background-color 0.5s ease, color 0.4s ease, box-shadow 0.5s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Muted shadow for light backgrounds */
-}
-
-.cta-btn.hovered {
-    background-color: var(--accent-gold);
-    color: #ffffff;
-    font-weight: bold;
-    box-shadow: 0 15px 35px rgba(194, 157, 56, 0.25);
-}
-
-/* --- Interactive Image Stage --- */
-.display-stage {
-    width: 85%;
-    height: 90%;
-    background: var(--panel-bg);
-    border: 1px solid rgba(194, 157, 56, 0.15);
-    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.06); /* Softer drop shadow */
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: border-color 0.5s ease, box-shadow 0.5s ease;
-    transform-style: preserve-3d;
-}
-
-.display-stage:hover {
-    border-color: var(--accent-sage);
-    box-shadow: 0 35px 70px rgba(143, 161, 141, 0.15), 0 15px 35px rgba(0,0,0,0.05);
-}
-
-/* Ambient background glow behind the active product stage */
-.ambient-glow {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(143, 161, 141, 0.2) 0%, transparent 70%);
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* --- Shop Layout Styling --- */
-.shop-section {
-    position: relative;
-    z-index: 10;
-    background-color: #f7f5f2; /* Beautiful oatmeal/linen background wrap */
-    padding: 8rem 6% 6rem 6%;
-    margin-top: 0; 
-    border-top: 1px solid rgba(194, 157, 56, 0.1);
-}
-
-.product-card {
-    background: #ffffff; /* Clean white canvas for individual products */
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    padding: 1.5rem;
-    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
-}
-
-.product-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(143, 161, 141, 0.3);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.06);
-}
-
-.product-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 360px;
-    background: #faf9f6; /* Soft natural setting inside the card */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* --- Floating Interactive Add to Cart Button --- */
-.quick-add-btn {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 10%;
-    width: 80%;
-    padding: 1rem;
-    background: rgba(252, 251, 250, 0.95); /* Elegant light frosting button */
-    border: 1px solid var(--accent-gold);
-    color: var(--text-light);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease, color 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-}
-
-.quick-add-btn.hovered {
-    background: var(--accent-gold);
-    color: #ffffff;
-    font-weight: bold;
-    box-shadow: 0 15px 30px rgba(194, 157, 56, 0.2);
-}
-
-        /* --- Luxury Background Lather Bubble Canvas --- */
-        #bubble-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
+        /* Ambient background glow effect */
+        .hero-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(212, 163, 89, 0.15) 0%, rgba(0,0,0,0) 70%);
+            transform: translate(-50%, -50%);
             pointer-events: none;
-            opacity: 0.45;
+            z-index: 1;
+            animation: ambientGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes ambientGlow {
+            0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; transform: translate(-48%, -52%) scale(1.1); }
         }
 
         /* --- Navigation Bar --- */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem 4%;
+        .navbar {
+            position: relative;
+            z-index: 10;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
-            background: linear-gradient(to bottom, rgba(11,10,9,0.8), transparent);
-            backdrop-filter: blur(5px);
+            padding: 30px 8%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0));
         }
 
         .logo {
-            font-size: 1.8rem;
-            letter-spacing: 4px;
-            color: var(--accent-gold);
-            text-transform: uppercase;
-            font-weight: 400;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .nav-links {
             display: flex;
-            gap: 3rem;
             list-style: none;
+            gap: 35px;
         }
 
-        .nav-links li {
-            perspective: 1000px;
-        }
-
-        .nav-link-btn {
-            color: var(--text-muted);
+        .nav-links a {
+            color: #f5f5f5;
             text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: color 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        /* Nav link hover color & floating shadow upgrade */
-        .nav-link-btn.hovered {
-            color: var(--accent-gold);
-            background-color: rgba(212, 175, 55, 0.08);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        /* --- Hero Container --- */
-        .hero-container {
+            transition: all 0.3s ease;
             position: relative;
-            top: 0;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #d4a359;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4a359;
+            text-shadow: 0 0 10px rgba(212, 163, 89, 0.4);
+        }
+
+        .nav-links a:hover::after {
             width: 100%;
-            height: 100vh;
+        }
+
+        /* --- Hero Content Wrap --- */
+        .hero-content {
+            position: relative;
+            z-index: 5;
             display: grid;
             grid-template-columns: 1.2fr 1fr;
             align-items: center;
-            padding: 0 4% 0 6%;
-            z-index: 1;
-            pointer-events: none;
+            padding: 0 8% 8% 8%;
+            flex-grow: 1;
+            gap: 40px;
         }
 
-        .hero-left, .hero-right {
-            pointer-events: auto;
-        }
-
-        /* --- Left Column: Typography & CTA --- */
-        .hero-left {
+        /* --- Left Side Text Frame --- */
+        .hero-text-side {
             max-width: 650px;
-            z-index: 5;
+            /* Gentle persistent hover effect for the text block */
+            animation: floatingText 6s ease-in-out infinite;
         }
 
-        .sub-tag {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
+        @keyframes floatingText {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
 
-        .main-title {
-            font-size: 4.5rem;
-            font-weight: 300;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            color: var(--text-light);
-        }
-
-        .main-title span {
-            color: var(--accent-gold);
-            font-style: italic;
-        }
-
-        .description {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 3.5rem;
-            font-family: system-ui, -apple-system, sans-serif;
-            font-weight: 300;
-        }
-
-        /* --- Hero Main CTA Button --- */
-        .cta-wrapper {
-            display: inline-block;
-            perspective: 1000px;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 1.2rem 2.8rem;
-            border: 1px solid var(--accent-gold);
-            background: transparent;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: background-color 0.5s ease, color 0.4s ease, box-shadow 0.5s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .cta-btn.hovered {
-            background-color: var(--accent-gold);
-            color: var(--bg-color);
-            font-weight: bold;
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
-        }
-
-        /* --- Right Column: Interactive Image Stage --- */
-        .hero-right {
-            position: relative;
-            width: 100%;
-            height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            perspective: 1200px;
-        }
-
-        .display-stage {
-            width: 85%;
-            height: 90%;
-            background: var(--panel-bg);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: border-color 0.5s ease, box-shadow 0.5s ease;
-            transform-style: preserve-3d;
-        }
-
-        /* Luxury image hover state triggers border highlight and deeper shadow layers */
-        .display-stage:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.1), 0 20px 40px rgba(0,0,0,0.9);
-        }
-
-        .product-image {
-            position: absolute;
-            width: 75%;
-            height: 75%;
-            object-fit: contain;
-            opacity: 0;
-            transform: scale(0.9) translateY(20px) translateZ(0);
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); /* Quick return frame for magnetic follow */
-            pointer-events: none;
-        }
-
-        .product-image.active {
-            opacity: 1;
-            transform: scale(1) translateY(0) translateZ(30px);
-        }
-
-        .ambient-glow {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .scroll-hint {
-            position: fixed;
-            bottom: 2rem;
-            left: 6%;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            animation: pulse 2s infinite;
-            z-index: 5;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.3; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(5px); }
-            100% { opacity: 0.3; transform: translateY(0); }
-        }
-        /* --- Smooth Scroll Setup --- */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Adjusting the body layout to allow scrolling into further blocks */
-        body {
-            height: auto; /* Overrides fixed height to let content breathe */
-            min-height: 250vh;
-        }
-
-        /* --- Shop Layout Styling --- */
-        .shop-section {
-    position: relative;
-    z-index: 10;
-    background-color: #0d0c0b; 
-    padding: 8rem 6% 6rem 6%;
-    margin-top: 0; /* Change this from 100vh to 0 */
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-}
-
-        .shop-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .shop-subtitle {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .shop-title {
-            font-size: 2.8rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: var(--text-light);
-        }
-
-        .gold-divider {
-            width: 60px;
-            height: 1px;
-            background: var(--accent-gold);
-            margin: 1.5rem auto 0 auto;
-            opacity: 0.6;
-        }
-
-        /* --- Product Display Grid --- */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background: rgba(20, 18, 17, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.05);
-            padding: 1.5rem;
-            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 175, 55, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .product-image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 360px;
-            background: #141211;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .product-image-wrapper img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .product-card:hover .product-image-wrapper img {
-            transform: scale(1.08);
-        }
-
-        /* --- Floating Interactive Add to Cart Button --- */
-        .quick-add-btn {
-            position: absolute;
-            bottom: 1.5rem;
-            left: 10%;
-            width: 80%;
-            padding: 1rem;
-            background: rgba(11, 10, 9, 0.9);
-            border: 1px solid var(--accent-gold);
-            color: var(--text-light);
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease, color 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        .product-card:hover .quick-add-btn {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .quick-add-btn.hovered {
-            background: var(--accent-gold);
-            color: var(--bg-color);
-            font-weight: bold;
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25);
-        }
-
-        /* --- Typography Details --- */
-        .product-info {
-            margin-top: 1.5rem;
-            text-align: center;
-        }
-
-        .product-name {
-            font-size: 1.2rem;
+        .hero-text-side h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            line-height: 1.2;
             font-weight: 400;
             letter-spacing: 1px;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .product-description {
-            font-family: system-ui, sans-serif;
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .hero-text-side h1 span.italic-glow {
+            font-style: italic;
+            color: #f7e7c4;
+            text-shadow: 0 0 15px rgba(247, 231, 196, 0.3);
+        }
+
+        .hero-text-side p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 40px;
             font-weight: 300;
-            margin-bottom: 1rem;
-            padding: 0 1rem;
-            line-height: 1.4;
+            text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
         }
 
-        .product-price {
-            font-size: 1.1rem;
-            color: var(--accent-gold);
+        /* --- Interactive Buttons --- */
+        .btn-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            position: relative;
+            padding: 15px 35px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden; /* Encapsulates the bubbles inside the button context */
+        }
+
+        /* Primary Button Style (Shop Collection) */
+        .btn-primary {
+            background-color: #435b4f;
+            color: #ffffff;
+            border: 1px solid #435b4f;
+        }
+
+        /* Secondary Button Style (Our Story) */
+        .btn-secondary {
+            background-color: rgba(67, 59, 43, 0.4);
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Button Hover and Glowing Shadows */
+        .btn-primary:hover {
+            background-color: #4e6b5c;
+            border-color: #5d7e6d;
+            box-shadow: 0 0 25px rgba(67, 91, 79, 0.6), inset 0 0 10px rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(212, 163, 89, 0.2);
+            border-color: #d4a359;
+            box-shadow: 0 0 25px rgba(212, 163, 89, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* --- CSS Soap Bubble Animation System --- */
+        .btn::before, .btn::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.25);
+            bottom: -20px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        /* Distinct bubble sizes and locations */
+        .btn::before {
+            width: 8px;
+            height: 8px;
+            left: 30%;
+        }
+        .btn::after {
+            width: 12px;
+            height: 12px;
+            left: 70%;
+        }
+
+        /* Triggering bubble animation cycles dynamically on hover */
+        .btn:hover::before {
+            opacity: 1;
+            animation: floatBubbleUp 1.2s infinite linear;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+            animation: floatBubbleUp 1.5s infinite linear 0.3s;
+        }
+
+        @keyframes floatBubbleUp {
+            0% {
+                bottom: -10px;
+                transform: translateX(0) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateX(5px) scale(1.2);
+            }
+            100% {
+                bottom: 100%;
+                transform: translateX(-5px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* --- Right Side Floating Card Graphic --- */
+        .hero-graphic-side {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* Interactive Card mirroring layout dynamics */
+        .floating-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 100%;
+            /* Continuous gentle drift */
+            animation: overallFloat 7s ease-in-out infinite;
+            transition: all 0.5s ease;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(212, 163, 89, 0.4);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 163, 89, 0.2);
+        }
+
+        .card-img-wrap {
+            width: 100%;
+            height: 260px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle zooming effect inside the wrapper frame */
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .floating-card:hover .card-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .card-info {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .card-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #f7e7c4;
+            margin-bottom: 5px;
             letter-spacing: 1px;
+        }
+
+        .card-info p {
+            font-size: 0.8rem;
+            color: #b3b3b3;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes overallFloat {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* --- Responsive Viewports --- */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 40px;
+            }
+            .hero-text-side {
+                margin: 0 auto;
+            }
+            .btn-container {
+                justify-content: center;
+            }
+            .hero-graphic-side {
+                justify-content: center;
+                margin-top: 20px;
+            }
+            .hero-text-side h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- HTML5 Canvas for Organic Floating Soap Bubble Animations -->
-    <canvas id="bubble-canvas"></canvas>
-
-    <div class="scroll-hint">Scroll down to view textures</div>
-
-    <nav>
-        <div class="logo">SÀVON</div>
-        <ul class="nav-links">
-            <li><a href="#shop" class="nav-link-btn magnetic-target">Shop</a></li>
-            <li><a href="#about" class="nav-link-btn magnetic-target">About</a></li>
-            <li><a href="#bespoke" class="nav-link-btn magnetic-target">Bespoke</a></li>
-            <li><a href="#contact" class="nav-link-btn magnetic-target">Contact</a></li>
-        </ul>
-    </nav>
-
     <div class="hero-container">
-        <div class="hero-left">
-            <p class="sub-tag">The Art of Bathing</p>
-            <h1 class="main-title">Botanical <span>Moda</span></h1>
-            <p class="description">
-                Exquisite raw ingredients hand-poured into organic sculptural masterpieces. 
-                Uncompromising luxury designed to restore balance and nurture your skin with natural sophistication.
-            </p>
-            
-            <div class="cta-wrapper">
-                <button class="cta-btn magnetic-target" id="hero-cta">Discover the Collection</button>
-            </div>
-        </div>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <a href="#" class="logo">AVENYA</a>
+            <ul class="nav-links">
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Journal</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
 
-        <div class="hero-right">
-            <div class="ambient-glow"></div>
-            <div class="display-stage" id="image-stage">
-                <img src="https://images.unsplash.com/photo-1607006342456-ba274cb226ef?auto=format&fit=crop&w=800&q=80" alt="Luxury Soap Variant One" class="product-image active" id="img1">
-                <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=800&q=80" alt="Luxury Soap Variant Two" class="product-image" id="img2">
-            </div>
-        </div>
-    </div>
-<!-- --- NEW: E-COMMERCE SHOP SECTION --- -->
-    <section id="shop" class="shop-section">
-        <div class="shop-header">
-            <p class="shop-subtitle">Curated Formulations</p>
-            <h2 class="shop-title">The Core Collection</h2>
-            <div class="gold-divider"></div>
-        </div>
-
-        <div class="product-grid">
-            <!-- Product Card 1 -->
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1607006342456-ba274cb226ef?auto=format&fit=crop&w=600&q=80" alt="Gold Artisan Soap">
-                    <button class="quick-add-btn magnetic-target">Add to Cart</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Activated Charcoal & Gold Leaf</h3>
-                    <p class="product-description">Deeply purifying activated carbon infused with 24k gold flakes.</p>
-                    <p class="product-price">$34.00</p>
-                </div>
-            </div>
-
-            <!-- Product Card 2 -->
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=600&q=80" alt="Botanical Soap">
-                    <button class="quick-add-btn magnetic-target">Add to Cart</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Raw Sandalwood & Amber</h3>
-                    <p class="product-description">A rich, ground blend featuring warm, vintage woody notes.</p>
-                    <p class="product-price">$38.00</p>
-                </div>
-            </div>
-
-            <!-- Product Card 3 -->
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1605264964528-06403738d6dc?auto=format&fit=crop&w=600&q=80" alt="Oatmeal Soap">
-                    <button class="quick-add-btn magnetic-target">Add to Cart</button>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Crushed Almond & Silk Oat</h3>
-                    <p class="product-description">Gentle exfoliating grains wrapped in creamy, moisturizing lather.</p>
-                    <p class="product-price">$32.00</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script>
-        /* --- 1. Universal Magnetic Proximity Animation engine (For all buttons and links) --- */
-        const targets = document.querySelectorAll('.magnetic-target');
-
-        document.addEventListener('mousemove', (e) => {
-            targets.forEach(target => {
-                const rect = target.getBoundingClientRect();
-                const targetX = rect.left + rect.width / 2;
-                const targetY = rect.top + rect.height / 2;
+        <!-- Main Hero Grid Structure -->
+        <main class="hero-content">
+            <!-- Text Content matching image layout -->
+            <div class="hero-text-side">
+                <h1>HANDMADE SOAPS <br><span class="italic-glow">THAT GLOW WITH</span> <br>NATURE</h1>
+                <p>Crafted with passion using pure botanicals, essential oils, and radiant goodness for your skin.</p>
                 
-                const distanceX = e.clientX - targetX;
-                const distanceY = e.clientY - targetY;
-                const distance = Math.hypot(distanceX, distanceY);
+                <div class="btn-container">
+                    <!-- Buttons equipped with glow effects and dynamic bubble generators inside -->
+                    <a href="#" class="btn btn-primary">Shop Collection</a>
+                    <a href="#" class="btn btn-secondary">Our Story</a>
+                </div>
+            </div>
 
-                // Activation radius for proximity zoom
-                if (distance < 120) {
-                    target.classList.add('hovered');
-                    
-                    // Pull intensity calculation based on target type
-                    const pull = target.classList.contains('cta-btn') ? 22 : 12;
-                    const x = (distanceX / 120) * pull;
-                    const y = (distanceY / 120) * pull;
-                    
-                    target.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
-                } else {
-                    target.classList.remove('hovered');
-                    target.style.transform = `translate(0px, 0px) scale(1)`;
-                }
-            });
-        });
+            <!-- Animated floating elements previewing the vibe of image_3c629f.jpg -->
+            <div class="hero-graphic-side">
+                <div class="floating-card">
+                    <div class="card-img-wrap">
+                        <img src="image_3c629f.jpg" alt="Avenya Turmeric & Calendula Soap Collage Showcase">
+                    </div>
+                    <div class="card-info">
+                        <h3>Turmeric & Calendula</h3>
+                        <p>Artisan Botanicals</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
-        /* --- 2. 3D Hover Parallax Effect for the Main Product Image Stage --- */
-        const stage = document.getElementById('image-stage');
-        
-        stage.addEventListener('mousemove', (e) => {
-            const rect = stage.getBoundingClientRect();
-            const x = e.clientX - rect.left - (rect.width / 2);
-            const y = e.clientY - rect.top - (rect.height / 2);
-            
-            // Map movement coordinates to precise 3D tilts
-            const tiltX = (y / (rect.height / 2)) * -12; 
-            const tiltY = (x / (rect.width / 2)) * 12; 
-
-            stage.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-            
-            // Apply a subtle opposite translation directly to the inner active product snapshot
-            const activeImg = stage.querySelector('.product-image.active');
-            if(activeImg) {
-                activeImg.style.transform = `translate3d(${x * 0.1}px, ${y * 0.1}px, 50px) scale(1.05)`;
-            }
-        });
-
-        stage.addEventListener('mouseleave', () => {
-            stage.style.transform = `rotateX(0deg) rotateY(0deg)`;
-            const activeImg = stage.querySelector('.product-image.active');
-            if(activeImg) {
-                activeImg.style.transform = `translate3d(0px, 0px, 30px) scale(1)`;
-            }
-        });
-
-        /* --- 3. Scroll Sequence Cross-fade Engine --- */
-        const img1 = document.getElementById('img1');
-        const img2 = document.getElementById('img2');
-
-        window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY;
-            const triggerPoint = window.innerHeight * 0.35;
-
-            if (scrollPos > triggerPoint) {
-                if (img1.classList.contains('active')) {
-                    img1.classList.remove('active');
-                    img2.classList.add('active');
-                }
-            } else {
-                if (img2.classList.contains('active')) {
-                    img2.classList.remove('active');
-                    img1.classList.add('active');
-                }
-            }
-        });
-
-        /* --- 4. High-Performance Canvas Soap Lather Bubble Simulator --- */
-        const canvas = document.getElementById('bubble-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let bubblesArray = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Bubble {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                // Start below viewport or spread randomly across screen initially
-                this.y = canvas.height + (Math.random() * 100);
-                this.radius = Math.random() * 15 + 4; // Generates various sizes
-                this.speedY = Math.random() * 0.6 + 0.2; // Slow, luxurious floating speed
-                this.wobbleSpeed = Math.random() * 0.02 + 0.005;
-                this.wobbleAngle = Math.random() * Math.PI;
-                this.wobbleRange = Math.random() * 1.5 + 0.5;
-                // Soft gradient styling mirroring transparent soapy look
-                this.opacity = Math.random() * 0.25 + 0.05;
-            }
-
-            update() {
-                this.y -= this.speedY;
-                this.wobbleAngle += this.wobbleSpeed;
-                this.x += Math.sin(this.wobbleAngle) * this.wobbleRange;
-
-                // Reset bubble configuration if it floats past the header area
-                if (this.y + this.radius < 0) {
-                    this.y = canvas.height + this.radius;
-                    this.x = Math.random() * canvas.width;
-                    this.opacity = Math.random() * 0.25 + 0.05;
-                }
-            }
-
-           draw() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    
-    // Subtle sage/gold tinted lines for the light background
-    ctx.strokeStyle = `rgba(143, 161, 141, ${this.opacity * 1.5})`; 
-    ctx.lineWidth = 0.5;
-    ctx.stroke();
-
-    // Very soft inner shine reflection
-    ctx.fillStyle = `rgba(194, 157, 56, ${this.opacity * 0.15})`;
-    ctx.fill();
-}
-
-        function initBubbles() {
-            bubblesArray = [];
-            const bubbleCount = Math.floor((canvas.width * canvas.height) / 25000); // Scaled count based on viewport
-            for (let i = 0; i < bubbleCount; i++) {
-                let b = new Bubble();
-                b.y = Math.random() * canvas.height; // Distribute evenly at page load
-                bubblesArray.push(b);
-            }
-        }
-
-        function animateBubbles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            bubblesArray.forEach(bubble => {
-                bubble.update();
-                bubble.draw();
-            });
-            requestAnimationFrame(animateBubbles);
-        }
-
-        initBubbles();
-        animateBubbles();
-    </script>
 </body>
 </html>
