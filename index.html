@@ -24,7 +24,7 @@
             background-color: var(--bg-color);
             color: var(--text-light);
             overflow-x: hidden;
-            height: 200vh; /* Extra height to demonstrate the scroll image swap */
+            height: 200vh; /* Extra height for scroll-driven image swap */
         }
 
         /* --- Custom Scrollbar --- */
@@ -37,6 +37,18 @@
         ::-webkit-scrollbar-thumb {
             background: var(--accent-gold);
             border-radius: 3px;
+        }
+
+        /* --- Luxury Background Lather Bubble Canvas --- */
+        #bubble-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.45;
         }
 
         /* --- Navigation Bar --- */
@@ -68,24 +80,32 @@
             list-style: none;
         }
 
-        .nav-links a {
+        .nav-links li {
+            perspective: 1000px;
+        }
+
+        .nav-link-btn {
             color: var(--text-muted);
             text-decoration: none;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 2px;
-            transition: color 0.4s ease, transform 0.3s ease;
             display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: color 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .nav-links a:hover {
+        /* Nav link hover color & floating shadow upgrade */
+        .nav-link-btn.hovered {
             color: var(--accent-gold);
-            transform: translateY(-2px);
+            background-color: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         /* --- Hero Container --- */
         .hero-container {
-            position: fixed; /* Keeps hero layout locked during scroll effects */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -95,11 +115,11 @@
             align-items: center;
             padding: 0 4% 0 6%;
             z-index: 1;
-            pointer-events: none; /* Let scroll pass through to body */
+            pointer-events: none;
         }
 
         .hero-left, .hero-right {
-            pointer-events: auto; /* Re-enable pointer events for interactive elements */
+            pointer-events: auto;
         }
 
         /* --- Left Column: Typography & CTA --- */
@@ -134,11 +154,11 @@
             color: var(--text-muted);
             line-height: 1.8;
             margin-bottom: 3.5rem;
-            font-family: system-ui, -apple-system, sans-serif; /* Cleaner body font */
+            font-family: system-ui, -apple-system, sans-serif;
             font-weight: 300;
         }
 
-        /* --- Floating Interactive Button --- */
+        /* --- Hero Main CTA Button --- */
         .cta-wrapper {
             display: inline-block;
             perspective: 1000px;
@@ -154,23 +174,18 @@
             letter-spacing: 3px;
             font-size: 0.85rem;
             cursor: pointer;
-            position: relative;
-            transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
-                        box-shadow 0.5s ease;
+            transition: background-color 0.5s ease, color 0.4s ease, box-shadow 0.5s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transform-style: preserve-3d;
         }
 
-        /* Floating Shadow/Glow effect on proximity/hover */
-        .cta-btn:hover {
+        .cta-btn.hovered {
             background-color: var(--accent-gold);
             color: var(--bg-color);
             font-weight: bold;
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3);
         }
 
-        /* --- Right Column: Scrolling Visuals --- */
+        /* --- Right Column: Interactive Image Stage --- */
         .hero-right {
             position: relative;
             width: 100%;
@@ -178,6 +193,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            perspective: 1200px;
         }
 
         .display-stage {
@@ -191,6 +207,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
+            transition: border-color 0.5s ease, box-shadow 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* Luxury image hover state triggers border highlight and deeper shadow layers */
+        .display-stage:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.1), 0 20px 40px rgba(0,0,0,0.9);
         }
 
         .product-image {
@@ -199,17 +224,17 @@
             height: 75%;
             object-fit: contain;
             opacity: 0;
-            transform: scale(0.9) translateY(20px);
+            transform: scale(0.9) translateY(20px) translateZ(0);
             transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+                        transform 0.2s cubic-bezier(0.25, 1, 0.5, 1); /* Quick return frame for magnetic follow */
+            pointer-events: none;
         }
 
         .product-image.active {
             opacity: 1;
-            transform: scale(1) translateY(0);
+            transform: scale(1) translateY(0) translateZ(30px);
         }
 
-        /* Ambient background glow behind the active product stage */
         .ambient-glow {
             position: absolute;
             width: 300px;
@@ -219,7 +244,6 @@
             pointer-events: none;
         }
 
-        /* Subtle indicator to scroll */
         .scroll-hint {
             position: fixed;
             bottom: 2rem;
@@ -241,23 +265,22 @@
 </head>
 <body>
 
-    <!-- Scroll Helper Text -->
+    <!-- HTML5 Canvas for Organic Floating Soap Bubble Animations -->
+    <canvas id="bubble-canvas"></canvas>
+
     <div class="scroll-hint">Scroll down to view textures</div>
 
-    <!-- Navigation Bar -->
     <nav>
         <div class="logo">SÀVON</div>
         <ul class="nav-links">
-            <li><a href="#shop">Shop</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#bespoke">Bespoke</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#shop" class="nav-link-btn magnetic-target">Shop</a></li>
+            <li><a href="#about" class="nav-link-btn magnetic-target">About</a></li>
+            <li><a href="#bespoke" class="nav-link-btn magnetic-target">Bespoke</a></li>
+            <li><a href="#contact" class="nav-link-btn magnetic-target">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Main Hero Setup -->
     <div class="hero-container">
-        <!-- Text details -->
         <div class="hero-left">
             <p class="sub-tag">The Art of Bathing</p>
             <h1 class="main-title">Botanical <span>Moda</span></h1>
@@ -266,17 +289,14 @@
                 Uncompromising luxury designed to restore balance and nurture your skin with natural sophistication.
             </p>
             
-            <!-- Dynamic Proximity CTA -->
-            <div class="cta-wrapper" id="magnetic-area">
-                <button class="cta-btn" id="magnetic-btn">Discover the Collection</button>
+            <div class="cta-wrapper">
+                <button class="cta-btn magnetic-target" id="hero-cta">Discover the Collection</button>
             </div>
         </div>
 
-        <!-- Scroll-driven image container -->
         <div class="hero-right">
             <div class="ambient-glow"></div>
-            <div class="display-stage">
-                <!-- Fallback unsplash image alternatives demonstrating premium aesthetics -->
+            <div class="display-stage" id="image-stage">
                 <img src="https://images.unsplash.com/photo-1607006342456-ba274cb226ef?auto=format&fit=crop&w=800&q=80" alt="Luxury Soap Variant One" class="product-image active" id="img1">
                 <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=800&q=80" alt="Luxury Soap Variant Two" class="product-image" id="img2">
             </div>
@@ -284,44 +304,72 @@
     </div>
 
     <script>
-        /* --- 1. Proximity Zoom & Float Effect (Magnetic Button) --- */
-        const btn = document.getElementById('magnetic-btn');
-        const area = document.getElementById('magnetic-area');
+        /* --- 1. Universal Magnetic Proximity Animation engine (For all buttons and links) --- */
+        const targets = document.querySelectorAll('.magnetic-target');
 
         document.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            // Find center coordinates of the button
-            const btnX = rect.left + rect.width / 2;
-            const btnY = rect.top + rect.height / 2;
-            
-            // Calculate distance between cursor and button center
-            const distanceX = e.clientX - btnX;
-            const distanceY = e.clientY - btnY;
-            const distance = Math.hypot(distanceX, distanceY);
-
-            // Proximity threshold trigger range (closer = more dramatic effect)
-            if (distance < 180) {
-                // Scaling up and shifting coordinates towards the cursor organically
-                const strength = 25; 
-                const x = (distanceX / 180) * strength;
-                const y = (distanceY / 180) * strength;
+            targets.forEach(target => {
+                const rect = target.getBoundingClientRect();
+                const targetX = rect.left + rect.width / 2;
+                const targetY = rect.top + rect.height / 2;
                 
-                btn.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
-                btn.style.boxShadow = `0 25px 50px rgba(212, 175, 55, 0.3)`;
-            } else {
-                // Return smoothly to rest position
-                btn.style.transform = `translate(0px, 0px) scale(1)`;
-                btn.style.boxShadow = `0 10px 30px rgba(0, 0, 0, 0.5)`;
+                const distanceX = e.clientX - targetX;
+                const distanceY = e.clientY - targetY;
+                const distance = Math.hypot(distanceX, distanceY);
+
+                // Activation radius for proximity zoom
+                if (distance < 120) {
+                    target.classList.add('hovered');
+                    
+                    // Pull intensity calculation based on target type
+                    const pull = target.classList.contains('cta-btn') ? 22 : 12;
+                    const x = (distanceX / 120) * pull;
+                    const y = (distanceY / 120) * pull;
+                    
+                    target.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
+                } else {
+                    target.classList.remove('hovered');
+                    target.style.transform = `translate(0px, 0px) scale(1)`;
+                }
+            });
+        });
+
+        /* --- 2. 3D Hover Parallax Effect for the Main Product Image Stage --- */
+        const stage = document.getElementById('image-stage');
+        
+        stage.addEventListener('mousemove', (e) => {
+            const rect = stage.getBoundingClientRect();
+            const x = e.clientX - rect.left - (rect.width / 2);
+            const y = e.clientY - rect.top - (rect.height / 2);
+            
+            // Map movement coordinates to precise 3D tilts
+            const tiltX = (y / (rect.height / 2)) * -12; 
+            const tiltY = (x / (rect.width / 2)) * 12; 
+
+            stage.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            
+            // Apply a subtle opposite translation directly to the inner active product snapshot
+            const activeImg = stage.querySelector('.product-image.active');
+            if(activeImg) {
+                activeImg.style.transform = `translate3d(${x * 0.1}px, ${y * 0.1}px, 50px) scale(1.05)`;
             }
         });
 
-        /* --- 2. Smooth Image Interchanging via Scrolling --- */
+        stage.addEventListener('mouseleave', () => {
+            stage.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            const activeImg = stage.querySelector('.product-image.active');
+            if(activeImg) {
+                activeImg.style.transform = `translate3d(0px, 0px, 30px) scale(1)`;
+            }
+        });
+
+        /* --- 3. Scroll Sequence Cross-fade Engine --- */
         const img1 = document.getElementById('img1');
         const img2 = document.getElementById('img2');
 
         window.addEventListener('scroll', () => {
             const scrollPos = window.scrollY;
-            const triggerPoint = window.innerHeight * 0.35; // Swap halfway down
+            const triggerPoint = window.innerHeight * 0.35;
 
             if (scrollPos > triggerPoint) {
                 if (img1.classList.contains('active')) {
@@ -335,6 +383,83 @@
                 }
             }
         });
+
+        /* --- 4. High-Performance Canvas Soap Lather Bubble Simulator --- */
+        const canvas = document.getElementById('bubble-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let bubblesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Bubble {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                // Start below viewport or spread randomly across screen initially
+                this.y = canvas.height + (Math.random() * 100);
+                this.radius = Math.random() * 15 + 4; // Generates various sizes
+                this.speedY = Math.random() * 0.6 + 0.2; // Slow, luxurious floating speed
+                this.wobbleSpeed = Math.random() * 0.02 + 0.005;
+                this.wobbleAngle = Math.random() * Math.PI;
+                this.wobbleRange = Math.random() * 1.5 + 0.5;
+                // Soft gradient styling mirroring transparent soapy look
+                this.opacity = Math.random() * 0.25 + 0.05;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.wobbleAngle += this.wobbleSpeed;
+                this.x += Math.sin(this.wobbleAngle) * this.wobbleRange;
+
+                // Reset bubble configuration if it floats past the header area
+                if (this.y + this.radius < 0) {
+                    this.y = canvas.height + this.radius;
+                    this.x = Math.random() * canvas.width;
+                    this.opacity = Math.random() * 0.25 + 0.05;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                
+                // Outer ring stroke for premium iridescence trace
+                ctx.strokeStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.lineWidth = 0.6;
+                ctx.stroke();
+
+                // Soft inner shine/glow accent
+                ctx.fillStyle = `rgba(245, 242, 235, ${this.opacity * 0.3})`;
+                ctx.fill();
+            }
+        }
+
+        function initBubbles() {
+            bubblesArray = [];
+            const bubbleCount = Math.floor((canvas.width * canvas.height) / 25000); // Scaled count based on viewport
+            for (let i = 0; i < bubbleCount; i++) {
+                let b = new Bubble();
+                b.y = Math.random() * canvas.height; // Distribute evenly at page load
+                bubblesArray.push(b);
+            }
+        }
+
+        function animateBubbles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            bubblesArray.forEach(bubble => {
+                bubble.update();
+                bubble.draw();
+            });
+            requestAnimationFrame(animateBubbles);
+        }
+
+        initBubbles();
+        animateBubbles();
     </script>
 </body>
 </html>
