@@ -261,6 +261,160 @@
             50% { opacity: 1; transform: translateY(5px); }
             100% { opacity: 0.3; transform: translateY(0); }
         }
+        /* --- Smooth Scroll Setup --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Adjusting the body layout to allow scrolling into further blocks */
+        body {
+            height: auto; /* Overrides fixed height to let content breathe */
+            min-height: 250vh;
+        }
+
+        /* --- Shop Layout Styling --- */
+        .shop-section {
+            position: relative;
+            z-index: 10;
+            background-color: #0d0c0b; /* Slightly lighter shade for structural depth */
+            padding: 8rem 6% 6rem 6%;
+            margin-top: 100vh; /* Pushes the shop section directly below the pinned hero section */
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .shop-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .shop-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        .gold-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--accent-gold);
+            margin: 1.5rem auto 0 auto;
+            opacity: 0.6;
+        }
+
+        /* --- Product Display Grid --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: rgba(20, 18, 17, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.05);
+            padding: 1.5rem;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            background: #141211;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image-wrapper img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .product-card:hover .product-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        /* --- Floating Interactive Add to Cart Button --- */
+        .quick-add-btn {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 10%;
+            width: 80%;
+            padding: 1rem;
+            background: rgba(11, 10, 9, 0.9);
+            border: 1px solid var(--accent-gold);
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease, background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .product-card:hover .quick-add-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quick-add-btn.hovered {
+            background: var(--accent-gold);
+            color: var(--bg-color);
+            font-weight: bold;
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25);
+        }
+
+        /* --- Typography Details --- */
+        .product-info {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-family: system-ui, sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
