@@ -14,7 +14,10 @@
         }
 
         body {
-            background: linear-gradient(180deg, #fbfbfa 0%, #f7f5f0 50%, #f2f5f1 100%);
+            background-image: linear-gradient(rgba(251, 251, 250, 0.92), rgba(247, 245, 240, 0.95)), 
+                              url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920'); /* Premium fluid textured backdrop */
+            background-size: cover;
+            background-attachment: fixed;
             color: #2e2c29;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -28,20 +31,22 @@
             color: #8c857b;
         }
 
-        /* --- PREMIER FIXED NAVIGATION --- */
+        /* --- PREMIER NAVIGATION (CURVED FLOATING NAV) --- */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 6%;
+            top: 20px;
+            left: 5%;
+            width: 90%;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: rgba(251, 251, 250, 0.85);
             backdrop-filter: blur(25px);
             z-index: 10000;
-            box-shadow: 0 4px 40px rgba(140, 133, 123, 0.03);
-            border-bottom: 1px solid rgba(140, 133, 123, 0.06);
+            box-shadow: 0 10px 40px rgba(140, 133, 123, 0.1);
+            border: 1px solid rgba(140, 133, 123, 0.15);
+            border-radius: 40px; /* Highly curved premium floating bar */
         }
 
         .logo {
@@ -85,18 +90,18 @@
         .cart-count-badge {
             background-color: #727d6b;
             color: white;
-            padding: 2px 7px;
-            border-radius: 10px;
+            padding: 2px 8px;
+            border-radius: 20px;
             font-size: 0.65rem;
-            margin-left: 4px;
+            margin-left: 6px;
             font-family: sans-serif;
         }
 
-        /* --- SINGLE PAGE APP VIEW SYSTEM --- */
+        /* --- VIEWPORT ENGINE --- */
         .app-view {
             display: none;
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 120px;
             opacity: 0;
             transform: translateY(15px);
             transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -108,7 +113,7 @@
             transform: translateY(0);
         }
 
-        /* --- VIEW 1: HOME PAGE WITH PHYSICAL BACKDROP IMAGE --- */
+        /* --- VIEW 1: HERO SECTION --- */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -116,10 +121,9 @@
             padding: 0 8%;
             position: relative;
             overflow: hidden;
-            background-color: #fbfbfa;
+            margin-top: -120px;
         }
 
-        /* The physical image layer forced safely behind everything */
         .hero-bg-img {
             position: absolute;
             top: 0;
@@ -129,17 +133,16 @@
             object-fit: cover;
             object-position: center right;
             z-index: 1;
-            pointer-events: none; /* Absolutely prevents image from blocking button clicks */
+            pointer-events: none;
         }
 
-        /* Clean gradient shield separating image from text */
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(251, 251, 250, 0.98) 35%, rgba(251, 251, 250, 0.7) 60%, rgba(251, 251, 250, 0) 100%);
+            background: linear-gradient(to right, rgba(251, 251, 250, 0.98) 35%, rgba(251, 251, 250, 0.6) 65%, rgba(251, 251, 250, 0) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -147,7 +150,7 @@
         .hero-text {
             max-width: 600px;
             position: relative;
-            z-index: 3; /* Completely safe over the background elements */
+            z-index: 3;
         }
 
         .hero-text h1 {
@@ -171,8 +174,8 @@
             margin-bottom: 3rem;
         }
 
-        /* --- VIEW 2: PRODUCT GALLERY & DISCOVERY GRID --- */
-        .shop-container { padding: 5rem 6% 10rem 6%; }
+        /* --- VIEW 2: PRODUCT GALLERY SHOP --- */
+        .shop-container { padding: 3rem 6% 10rem 6%; }
         .center-header { text-align: center; margin-bottom: 5rem; }
         .center-header h2 { font-size: 3.2rem; font-weight: 300; margin-top: 0.8rem; }
 
@@ -182,23 +185,24 @@
             gap: 4rem;
         }
 
-        /* Floating Interactive Product Frame */
+        /* Highly Curved & Floating Product Cards */
         .product-card {
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 24px; /* Curved corners */
             padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(140, 133, 123, 0.04);
-            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: 0 10px 30px rgba(140, 133, 123, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             display: flex;
             flex-direction: column;
             cursor: pointer;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        background 0.3s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-12px) scale(1.01);
-            box-shadow: 0 30px 60px rgba(140, 133, 123, 0.15);
+            transform: translateY(-15px) scale(1.02); /* Floats high when mouse approaches */
+            box-shadow: 0 30px 60px rgba(140, 133, 123, 0.18);
             background: #ffffff;
         }
 
@@ -206,7 +210,7 @@
             width: 100%;
             height: 350px;
             overflow: hidden;
-            border-radius: 6px;
+            border-radius: 16px; /* Curved sub-images */
             margin-bottom: 1.5rem;
             position: relative;
         }
@@ -241,11 +245,46 @@
             flex-grow: 1;
         }
 
-        /* --- VIEW 3: DEEP DIVE DYNAMIC PRODUCT DETAILS PAGE (PDP) --- */
-        .pdp-container {
+        /* --- VIEW 3: DYNAMIC PRODUCT DETAILS PAGE (PDP) --- */
+        .pdp-wrapper {
+            position: relative;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 5rem 6% 10rem 6%;
+            padding: 2rem 6% 10rem 6%;
+        }
+
+        /* Floating Curved Go Back Navigation link */
+        .back-nav-container {
+            margin-bottom: 2.5rem;
+            display: inline-block;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(140, 133, 123, 0.2);
+            padding: 0.7rem 1.6rem;
+            border-radius: 30px; /* Highly curved rounded pill */
+            color: #3a3835;
+            font-family: -apple-system, sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-back:hover {
+            background: #3a3835;
+            color: #ffffff;
+            transform: translateX(-6px) translateY(-3px); /* Interactive floating action */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .pdp-container {
             display: grid;
             grid-template-columns: 1.1fr 1fr;
             gap: 6rem;
@@ -262,8 +301,8 @@
             width: 100%;
             height: 550px;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 25px 55px rgba(0,0,0,0.06);
+            border-radius: 24px; /* Curved Main Product Picture */
+            box-shadow: 0 25px 55px rgba(0,0,0,0.08);
         }
 
         .main-pdp-img {
@@ -280,20 +319,20 @@
         }
 
         .thumb-img {
-            width: 80px;
-            height: 80px;
+            width: 85px;
+            height: 85px;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 12px; /* Curved micro thumbnails */
             cursor: pointer;
             opacity: 0.6;
             border: 2px solid transparent;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .thumb-img.active-thumb, .thumb-img:hover {
             opacity: 1;
             border-color: #727d6b;
-            transform: translateY(-2px);
+            transform: translateY(-5px); /* Micro floating animation */
         }
 
         .pdp-details h2 { font-size: 3.2rem; font-weight: 300; margin: 1rem 0; }
@@ -317,7 +356,7 @@
             gap: 1.5rem;
         }
 
-        /* --- BUTTONS & INTERACTIVE FLOATING STYLES --- */
+        /* --- BUTTONS & INTERACTIVE HIGH FLOATING ELEMENTS --- */
         .btn-luxury {
             display: inline-block;
             padding: 1.2rem 3rem;
@@ -331,14 +370,14 @@
             text-transform: uppercase;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 30px; /* Highly curved corners */
         }
 
         .btn-luxury:hover {
             background-color: #3a3835;
             color: #fbfbfa;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(58, 56, 53, 0.15);
+            transform: translateY(-6px); /* Strong floating element physics */
+            box-shadow: 0 15px 30px rgba(58, 56, 53, 0.18);
         }
 
         .btn-cart {
@@ -352,14 +391,14 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.85rem;
-            border-radius: 4px;
+            border-radius: 30px; /* Curved Add To Cart */
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .btn-cart:hover {
             background-color: #242321;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transform: translateY(-6px); /* High Floating response */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
         }
 
         .btn-buy-now {
@@ -377,16 +416,16 @@
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            border-radius: 4px;
-            transition: all 0.4s ease;
+            border-radius: 30px; /* Curved Buy/Enquire */
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             border: none;
             cursor: pointer;
         }
 
         .btn-buy-now:hover {
             background-color: #0b665c;
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(18, 140, 126, 0.3);
+            transform: translateY(-6px); /* Floating Action response */
+            box-shadow: 0 15px 35px rgba(18, 140, 126, 0.35);
         }
 
         .wa-svg-icon { width: 18px; height: 18px; fill: white; }
@@ -402,24 +441,25 @@
             bottom: 40px;
             right: 40px;
             background-color: #128C7E;
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 15px 35px rgba(18, 140, 126, 0.25);
+            box-shadow: 0 15px 35px rgba(18, 140, 126, 0.3);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 99999;
         }
-        .whatsapp-float:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 20px 40px rgba(18, 140, 126, 0.4); }
+        .whatsapp-float:hover { transform: scale(1.1) translateY(-6px); box-shadow: 0 20px 40px rgba(18, 140, 126, 0.45); }
 
-        footer { padding: 4rem 6%; text-align: center; background-color: #f5f3ee; border-top: 1px solid rgba(140, 133, 123, 0.08); }
+        footer { padding: 4rem 6%; text-align: center; background-color: rgba(245, 243, 238, 0.9); border-top: 1px solid rgba(140, 133, 123, 0.1); }
 
         /* --- ULTRA RESPONSIVE LAYOUT RESPONSES --- */
         @media (max-width: 968px) {
-            .hero-section { text-align: center; justify-content: center; padding-top: 100px; }
-            .hero-overlay { background: rgba(251, 251, 250, 0.85); }
+            nav { padding: 1rem 1.5rem; top: 10px; }
+            .hero-section { text-align: center; justify-content: center; padding-top: 140px; }
+            .hero-overlay { background: rgba(251, 251, 250, 0.88); }
             .hero-text h1 { font-size: 3rem; }
             .pdp-container { grid-template-columns: 1fr; gap: 4rem; }
             .main-pdp-img-holder { height: 400px; }
@@ -430,7 +470,7 @@
 </head>
 <body>
 
-    <!-- APPLICATION CONTROL NAV BAR -->
+    <!-- APPLICATION NAVIGATION BAR -->
     <nav>
         <div class="logo" onclick="switchView('home')">AVENYA</div>
         <div class="nav-links sans-serif">
@@ -444,10 +484,7 @@
     <!-- ================= APP VIEW 1: HOME PLATFORM ================= -->
     <div id="view-home" class="app-view visible-view">
         <header class="hero-section">
-            <!-- Physical Backdrop Image Layer -->
-            <img src="https://images.unsplash.com/photo-1608248597481-496100c8c836?q=80&w=1600" alt="Lady washing hands with soap" class="hero-bg-img">
-            
-            <!-- Safe Gradient Mask -->
+            <img src="https://images.unsplash.com/photo-1608248597481-496100c8c836?q=80&w=1600" alt="Lady washing hands with soap next to her" class="hero-bg-img">
             <div class="hero-overlay"></div>
 
             <div class="hero-text">
@@ -475,12 +512,21 @@
 
     <!-- ================= APP VIEW 3: DYNAMIC PRODUCT DETAIL INTERFACE (PDP) ================= -->
     <div id="view-pdp" class="app-view">
-        <main class="pdp-container" id="dynamic-pdp-content">
-            <!-- Populated seamlessly when any card or button triggers navigation -->
-        </main>
+        <div class="pdp-wrapper">
+            <!-- Global Back Button Interface -->
+            <div class="back-nav-container">
+                <button class="btn-back" onclick="switchView('shop')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Go Back
+                </button>
+            </div>
+            <main class="pdp-container" id="dynamic-pdp-content">
+                <!-- Populated seamlessly when any card or button triggers navigation -->
+            </main>
+        </div>
     </div>
 
-    <!-- ================= APP VIEW 4: CULT STORY ARCHIVE ================= -->
+    <!-- ================= APP VIEW 4: ABOUT STORY ARCHIVE ================= -->
     <div id="view-about" class="app-view">
         <main class="about-container">
             <p class="sans-serif">Our Heritage</p>
@@ -494,10 +540,10 @@
         </main>
     </div>
 
-    <!-- MAIN CONCIERGE CHAT HUB -->
+    <!-- MAIN WHATSAPP CONCIERGE -->
     <a href="https://wa.me/919744959412?text=Hello%20Avenya%20Soaps!%20I'm%20visiting%20your%20luxury%20digital%20flagship%20store%20and%20would%20love%20to%20consult%20on%20your%20handcrafted%20collections." 
        target="_blank" class="whatsapp-float" title="General Concierge Line">
-        <svg class="wa-svg-icon" style="width:28px; height:28px;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112zM17.16 14.8c-.303-.152-1.794-.885-2.072-.986-.278-.101-.481-.152-.682.152-.201.304-.777.986-.953 1.189-.177.203-.354.228-.658.076-.304-.152-1.283-.473-2.443-1.508-.903-.805-1.512-1.8-1.689-2.104-.177-.304-.019-.468.133-.619.136-.136.304-.354.455-.532.152-.177.202-.304.304-.506.101-.203.051-.38-.025-.532-.076-.152-.682-1.644-.934-2.253-.245-.59-.495-.51-.682-.51-.177-.001-.38-.001-.582-.001-.202 0-.531.076-.81.38-.278.304-1.062 1.039-1.062 2.532s1.088 2.937 1.239 3.14c.152.203 2.14 3.268 5.184 4.579.724.312 1.29.499 1.731.639.728.231 1.39.198 1.914.12.584-.087 1.794-.734 2.047-1.443.253-.71.253-1.317.177-1.443-.076-.127-.278-.203-.582-.355z"/></svg>
+        <svg class="wa-svg-icon" style="width:30px; height:30px;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112zM17.16 14.8c-.303-.152-1.794-.885-2.072-.986-.278-.101-.481-.152-.682.152-.201.304-.777.986-.953 1.189-.177.203-.354.228-.658.076-.304-.152-1.283-.473-2.443-1.508-.903-.805-1.512-1.8-1.689-2.104-.177-.304-.019-.468.133-.619.136-.136.304-.354.455-.532.152-.177.202-.304.304-.506.101-.203.051-.38-.025-.532-.076-.152-.682-1.644-.934-2.253-.245-.59-.495-.51-.682-.51-.177-.001-.38-.001-.582-.001-.202 0-.531.076-.81.38-.278.304-1.062 1.039-1.062 2.532s1.088 2.937 1.239 3.14c.152.203 2.14 3.268 5.184 4.579.724.312 1.29.499 1.731.639.728.231 1.39.198 1.914.12.584-.087 1.794-.734 2.047-1.443.253-.71.253-1.317.177-1.443-.076-.127-.278-.203-.582-.355z"/></svg>
     </a>
 
     <footer>
@@ -562,7 +608,8 @@
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }
 
-            const currentNav = document.getElementById('link-' + viewId);
+            // Highlighting navbar links based on current location
+            const currentNav = document.getElementById('link-' + (viewId === 'pdp' ? 'shop' : viewId));
             if (currentNav) currentNav.classList.add('active-nav');
         }
 
@@ -585,7 +632,7 @@
                         <span class="product-price">₹${product.price}</span>
                     </div>
                     <p class="product-desc">${product.desc}</p>
-                    <button class="btn-luxury" style="padding: 0.8rem; font-size:0.75rem;">Explore Curing Notes</button>
+                    <button class="btn-luxury" style="padding: 0.8rem 2rem; font-size:0.75rem;">Enquire & Buy</button>
                 `;
                 grid.appendChild(card);
             });
@@ -621,10 +668,10 @@
                     </div>
 
                     <div class="action-button-group">
-                        <button class="btn-cart" onclick="addToCartEngine()">Add To Collection Bag</button>
+                        <button class="btn-cart" onclick="addToCartEngine()">Add To Cart</button>
                         <button class="btn-buy-now" onclick="dispatchOrder('${product.name}', '₹${product.price}')">
                             <svg class="wa-svg-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112z"/></svg>
-                            Buy / Enquire Now
+                            Enquire or Buy Now
                         </button>
                     </div>
                 </div>
@@ -643,12 +690,12 @@
         function addToCartEngine() {
             cartCount++;
             document.getElementById('cart-counter').innerText = cartCount;
-            alert("Added securely to your luxury collection bag.");
+            alert("Product added to your cart successfully.");
         }
 
         // OUTBOUND SECURE CHAT DISPATCHER
         function dispatchOrder(name, cost) {
-            const clearMessage = encodeURIComponent(`Hello Avenya Luxury Studio! I would love to place a premium order enquiry for your handcrafted "${name}" listed at ${cost}. Kindly verify your courier logs.`);
+            const clearMessage = encodeURIComponent(`Hello Avenya Luxury Studio! I would love to place an enquiry for the handcrafted "${name}" listed at ${cost}.`);
             window.open(`https://wa.me/919744959412?text=${clearMessage}`, '_blank');
         }
 
