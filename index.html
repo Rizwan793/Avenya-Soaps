@@ -1,900 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVENYA SOAPS | The Art of Pure Bathing</title>
-    <style>
-        /* --- GLOBAL LUXURY ARCHITECTURE --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Didot", "Bodoni MT", "Cinzel", "Playfair Display", serif;
-        }
-
-        body {
-            background-image: linear-gradient(rgba(251, 251, 250, 0.92), rgba(247, 245, 240, 0.95)), 
-                              url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1920');
-            background-size: cover;
-            background-attachment: fixed;
-            color: #2e2c29;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        .sans-serif {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-size: 0.72rem;
-            color: #8c857b;
-        }
-
-        /* --- PREMIER NAVIGATION (CURVED FLOATING NAV) --- */
-        nav {
-            position: fixed;
-            top: 20px;
-            left: 5%;
-            width: 90%;
-            padding: 1rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(251, 251, 250, 0.85);
-            backdrop-filter: blur(25px);
-            z-index: 10000;
-            box-shadow: 0 10px 40px rgba(140, 133, 123, 0.1);
-            border: 1px solid rgba(140, 133, 123, 0.15);
-            border-radius: 40px;
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 400;
-            letter-spacing: 6px;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-        }
-        .logo:hover { transform: scale(1.02); }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-item {
-            text-decoration: none;
-            cursor: pointer;
-            position: relative;
-            padding: 0.4rem 0;
-            transition: color 0.3s ease;
-        }
-
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: #3a3835;
-            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .nav-item:hover::after, .nav-item.active-nav::after {
-            width: 100%;
-        }
-
-        .cart-count-badge {
-            background-color: #727d6b;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 0.65rem;
-            margin-left: 6px;
-            font-family: sans-serif;
-        }
-
-        /* --- VIEWPORT ENGINE --- */
-        .app-view {
-            display: none;
-            min-height: 100vh;
-            padding-top: 120px;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .app-view.visible-view {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- VIEW 1: HERO SECTION --- */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 8%;
-            position: relative;
-            overflow: hidden;
-            margin-top: -120px;
-        }
-
-        .hero-bg-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center right;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(251, 251, 250, 0.98) 35%, rgba(251, 251, 250, 0.6) 65%, rgba(251, 251, 250, 0) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .hero-text {
-            max-width: 600px;
-            position: relative;
-            z-index: 3;
-        }
-
-        .hero-text h1 {
-            font-size: 4.5rem;
-            font-weight: 300;
-            line-height: 1.15;
-            margin: 1.5rem 0;
-            letter-spacing: -1px;
-        }
-
-        .hero-text h1 span {
-            font-style: italic;
-            color: #636d5d;
-        }
-
-        .hero-text p {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #514e49;
-            margin-bottom: 3rem;
-        }
-
-        /* --- VIEW 2: PRODUCT GALLERY SHOP --- */
-        .shop-container { padding: 3rem 6% 10rem 6%; }
-        .center-header { text-align: center; margin-bottom: 5rem; }
-        .center-header h2 { font-size: 3.2rem; font-weight: 300; margin-top: 0.8rem; }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 4rem;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.75);
-            border-radius: 24px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(140, 133, 123, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                        background 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(140, 133, 123, 0.18);
-            background: #ffffff;
-        }
-
-        .product-img-holder {
-            width: 100%;
-            height: 350px;
-            overflow: hidden;
-            border-radius: 16px;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.08);
-        }
-
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.8rem;
-        }
-
-        .product-title { font-size: 1.5rem; font-weight: 400; letter-spacing: 0.5px; }
-        .product-price { font-family: -apple-system, sans-serif; font-size: 1.2rem; font-weight: 500; color: #5c5852; }
-        
-        .product-desc {
-            font-family: -apple-system, sans-serif;
-            font-size: 0.92rem;
-            color: #726c64;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        /* --- VIEW 3: BARE NECESSITIES STYLE PDP --- */
-        .pdp-wrapper {
-            position: relative;
-            max-width: 1250px;
-            margin: 0 auto;
-            padding: 1rem 4% 10rem 4%;
-        }
-
-        .back-nav-container {
-            margin-bottom: 2rem;
-            display: inline-block;
-        }
-
-        .btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(140, 133, 123, 0.2);
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            color: #3a3835;
-            font-family: -apple-system, sans-serif;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .btn-back:hover {
-            background: #3a3835;
-            color: #ffffff;
-            transform: translateX(-4px) translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Classic Split-Screen Layout */
-        .pdp-container {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 5rem;
-            align-items: start;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 3rem;
-            border-radius: 32px;
-            border: 1px solid rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-        }
-
-        /* Left Column Gallery Structure */
-        .pdp-gallery-layout {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .thumb-column {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .thumb-img {
-            width: 75px;
-            height: 75px;
-            object-fit: cover;
-            border-radius: 12px;
-            cursor: pointer;
-            opacity: 0.5;
-            border: 1px solid rgba(140, 133, 123, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .thumb-img.active-thumb, .thumb-img:hover {
-            opacity: 1;
-            border-color: #3a3835;
-            transform: scale(1.03);
-        }
-
-        .main-pdp-img-holder {
-            flex-grow: 1;
-            height: 520px;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.06);
-            border: 1px solid rgba(255,255,255,0.8);
-        }
-
-        .main-pdp-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Right Column Details Structure */
-        .pdp-details-layout {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pdp-brand-tag {
-            font-family: -apple-system, sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            color: #727d6b;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .pdp-title {
-            font-size: 2.8rem;
-            font-weight: 400;
-            line-height: 1.2;
-            color: #242321;
-            margin-bottom: 0.8rem;
-        }
-
-        .pdp-price-row {
-            font-family: -apple-system, sans-serif;
-            font-size: 1.6rem;
-            font-weight: 500;
-            color: #3a3835;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(140, 133, 123, 0.15);
-        }
-
-        .pdp-tax-notice {
-            font-size: 0.8rem;
-            color: #8c857b;
-            font-weight: 400;
-            margin-left: 8px;
-        }
-
-        /* Retail Badges/Highlights */
-        .product-highlights-ribbon {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .highlight-pill {
-            font-family: -apple-system, sans-serif;
-            font-size: 0.75rem;
-            background: rgba(114, 125, 107, 0.12);
-            color: #535d4e;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        /* Interactive Quantity Selector Block */
-        .quantity-purchase-block {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            border: 1px solid rgba(140, 133, 123, 0.3);
-            border-radius: 30px;
-            background: #ffffff;
-            padding: 4px;
-        }
-
-        .qty-btn {
-            background: transparent;
-            border: none;
-            width: 35px;
-            height: 35px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #3a3835;
-            transition: background 0.2s;
-            border-radius: 50%;
-        }
-        .qty-btn:hover { background: #f5f3ee; }
-
-        .qty-input {
-            width: 40px;
-            text-align: center;
-            border: none;
-            font-family: -apple-system, sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            outline: none;
-            background: transparent;
-        }
-
-        /* Bare Necessities Minimal Accordion Panels */
-        .info-accordion {
-            border-top: 1px solid rgba(140, 133, 123, 0.15);
-            margin-top: 1rem;
-        }
-
-        .accordion-item {
-            border-bottom: 1px solid rgba(140, 133, 123, 0.15);
-        }
-
-        .accordion-header {
-            width: 100%;
-            background: transparent;
-            border: none;
-            padding: 1.2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: -apple-system, sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #3a3835;
-            cursor: pointer;
-            outline: none;
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            font-family: -apple-system, sans-serif;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: #6e6961;
-        }
-
-        .accordion-content p {
-            padding-bottom: 1.2rem;
-        }
-
-        /* --- BUTTONS & INTERACTIVE FLOATING ELEMENTS --- */
-        .btn-luxury {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            border: 1px solid #3a3835;
-            background-color: transparent;
-            color: #3a3835;
-            text-decoration: none;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-            border-radius: 30px;
-        }
-        .btn-luxury:hover {
-            background-color: #3a3835;
-            color: #fbfbfa;
-            transform: translateY(-6px);
-            box-shadow: 0 15px 30px rgba(58, 56, 53, 0.18);
-        }
-
-        .btn-cart {
-            flex: 1;
-            padding: 1.1rem;
-            background-color: transparent;
-            color: #3a3835;
-            border: 1.5px solid #3a3835;
-            font-family: -apple-system, sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .btn-cart:hover {
-            background-color: #3a3835;
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
-        }
-
-        .btn-buy-now {
-            flex: 1.3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            background-color: #128c7e;
-            color: #ffffff;
-            padding: 1.1rem;
-            text-decoration: none;
-            font-family: -apple-system, sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            border-radius: 30px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border: none;
-            cursor: pointer;
-        }
-        .btn-buy-now:hover {
-            background-color: #0b665c;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(18, 140, 126, 0.35);
-        }
-
-        .wa-svg-icon { width: 16px; height: 16px; fill: white; }
-
-        /* --- VIEW 4: THE ABOUT SECTION --- */
-        .about-container { max-width: 850px; margin: 0 auto; padding: 6rem 6% 12rem 6%; text-align: center; }
-        .about-container h2 { font-size: 3.4rem; font-weight: 300; margin: 1.5rem 0 3rem 0; }
-        .about-text-p { font-family: -apple-system, sans-serif; font-size: 1.2rem; line-height: 2; color: #4e4a43; margin-bottom: 3rem; text-align: justify; }
-
-        /* FLOATING ACTION PILL */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            background-color: #128C7E;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 15px 35px rgba(18, 140, 126, 0.3);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 99999;
-        }
-        .whatsapp-float:hover { transform: scale(1.1) translateY(-6px); box-shadow: 0 20px 40px rgba(18, 140, 126, 0.45); }
-
-        footer { padding: 4rem 6%; text-align: center; background-color: rgba(245, 243, 238, 0.9); border-top: 1px solid rgba(140, 133, 123, 0.1); }
-
-        /* --- RESPONSIVE BREAKPOINTS --- */
-        @media (max-width: 968px) {
-            nav { padding: 1rem 1.5rem; top: 10px; }
-            .hero-section { text-align: center; justify-content: center; padding-top: 140px; }
-            .hero-overlay { background: rgba(251, 251, 250, 0.88); }
-            .hero-text h1 { font-size: 3rem; }
-            .pdp-container { grid-template-columns: 1fr; gap: 3rem; padding: 1.5rem; }
-            .pdp-gallery-layout { flex-direction: column-reverse; }
-            .thumb-column { flex-direction: row; justify-content: center; }
-            .main-pdp-img-holder { height: 380px; }
-            .quantity-purchase-block { flex-direction: column; align-items: stretch; }
-            .quantity-selector { justify-content: center; width: 140px; margin: 0 auto; }
-            .nav-links { gap: 1.2rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Avenya - Luxury handmade organic soaps crafted in small batches with botanical oils and raw therapeutic extracts. Premium, minimal, and pure.">
+  <title>Avenya | Luxury Artisanal Handmade Soaps</title>
+  
+  <!-- FontAwesome Icons for UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- NAVIGATION COMPONENT -->
-    <nav>
-        <div class="logo" onclick="switchView('home')">AVENYA</div>
-        <div class="nav-links sans-serif">
-            <span class="nav-item active-nav" id="link-home" onclick="switchView('home')">Home</span>
-            <span class="nav-item" id="link-shop" onclick="switchView('shop')">Shop</span>
-            <span class="nav-item" id="link-about" onclick="switchView('about')">About</span>
-            <span class="nav-item" style="cursor: default;">Cart<span class="cart-count-badge" id="cart-counter">0</span></span>
+  <!-- Header Section -->
+  <header id="header">
+    <div class="nav-container">
+      <a href="#" class="logo" id="logo-brand">Avenya<span>.</span></a>
+      
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="nav-actions">
+        <button class="cart-icon-btn" id="cart-toggle-btn" aria-label="Open Cart">
+          <i class="fa-solid fa-bag-shopping" style="color: var(--color-forest); font-size: 1.25rem;"></i>
+          <span class="cart-count" id="cart-badge-count">0</span>
+        </button>
+        <a href="#shop" class="btn-nav-shop" id="nav-shop-cta">Shop Now</a>
+      </div>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-background"></div>
+    
+    <!-- Floating background decorative shapes -->
+    <div class="floating-element deco-circle float-slow"></div>
+    <div class="floating-element deco-leaf float-medium"></div>
+    
+    <div class="hero-container">
+      <!-- Hero Text Content -->
+      <div class="hero-content">
+        <p class="hero-tagline">Botanical • Artisanal • Cold-Processed</p>
+        <h1 class="hero-title">Poetry <em>for</em> your skin<span>.</span></h1>
+        <p class="hero-description">Indulge in Avenya's luxury handmade soaps. Crafted in small batches with pure raw plant extracts, therapeutic essential oils, and organic moisturizing clays.</p>
+        <div class="hero-actions">
+          <a href="#shop" class="btn-luxury-primary">Explore Shop</a>
+          <a href="#philosophy" class="btn-luxury-secondary">Our Story</a>
         </div>
-    </nav>
-
-    <!-- ================= APP VIEW 1: HOME PLATFORM ================= -->
-    <div id="view-home" class="app-view visible-view">
-        <header class="hero-section">
-            <img src="https://images.unsplash.com/photo-1608248597481-496100c8c836?q=80&w=1600" alt="Avenya Lifestyle" class="hero-bg-img">
-            <div class="hero-overlay"></div>
-            <div class="hero-text">
-                <p class="sans-serif">Haute Botanics & Curing Method</p>
-                <h1>Pure luxury. <br><span>Slowly harvested.</span></h1>
-                <p>An exquisite collection of cold-process organic soap bars handcrafted with nutrient-dense oils, healing botanical flora, and rich raw elements.</p>
-                <button class="btn-luxury" onclick="switchView('shop')">View The Archive</button>
-            </div>
-        </header>
-    </div>
-
-    <!-- ================= APP VIEW 2: SHOP CATALOGUE ================= -->
-    <div id="view-shop" class="app-view">
-        <main class="shop-container">
-            <header class="center-header">
-                <p class="sans-serif">Artisanal Studio Releases</p>
-                <h2>The Handcrafted Collection</h2>
-            </header>
-            <div class="product-grid" id="main-catalog-grid"></div>
-        </main>
-    </div>
-
-    <!-- ================= APP VIEW 3: RETAIL CORE PDP VIEW ================= -->
-    <div id="view-pdp" class="app-view">
-        <div class="pdp-wrapper">
-            <div class="back-nav-container">
-                <button class="btn-back" onclick="switchView('shop')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                    Back to collection
-                </button>
-            </div>
-            <main class="pdp-container" id="dynamic-pdp-content"></main>
+      </div>
+      
+      <!-- Hero Visuals -->
+      <div class="hero-visual">
+        <div class="image-frame-luxury">
+          <div class="hero-img-wrapper">
+            <img src="assets/hero.jpg" alt="Avenya Luxury Handmade Soap Bar on Travertine Stone" id="hero-img">
+          </div>
+          <!-- Floating Badge -->
+          <div class="hero-badge float-slow">
+            <p class="hero-badge-title">Artisanal Curing</p>
+            <p class="hero-badge-text">6 Weeks Aged</p>
+          </div>
         </div>
+      </div>
     </div>
-
-    <!-- ================= APP VIEW 4: ABOUT ARCHIVE ================= -->
-    <div id="view-about" class="app-view">
-        <main class="about-container">
-            <p class="sans-serif">Our Heritage</p>
-            <h2>Born out of patience. Driven by botanical truth.</h2>
-            <p class="about-text-p">
-                AVENYA was founded upon a clear, minimalist realization: modern cleansing processes are fundamentally rushed and over-processed with synthetics. We chose to reject mass industrial machinery to rebuild a luxurious, sensory, skin-first alternative. 
-                <br><br>
-                Every formulation requires six complete weeks to naturally solidify and reach optimal, rich nourishment levels. We curate raw, premium natural ingredients directly from cold-pressed fields. We value clean design, skin harmony, and complete structural transparency above everything else.
-            </p>
-            <button class="btn-luxury" onclick="switchView('shop')">Return To Collection</button>
-        </main>
+  </section>
+  <!-- Brand Philosophy Section -->
+  <section class="philosophy" id="philosophy">
+    <div class="section-container">
+      <div class="section-intro">
+        <p class="section-tagline">Natural Sophistication</p>
+        <h2 class="section-title">Nurture Your Skin <span>Without Compromise</span></h2>
+      </div>
+      
+      <div class="philosophy-grid">
+        <!-- Card 1 -->
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <h3 class="philosophy-card-title">Botanical Infusions</h3>
+          <p class="philosophy-card-desc">Sourced from pristine local organic farms. Extra virgin olive oil, creamy shea butter, and pure coconut oil create a rich, conditioning lather.</p>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3 class="philosophy-card-title">Pure Clays & Herbs</h3>
+          <p class="philosophy-card-desc">Naturally colored with nutrient-dense French pink clay, botanical powders, and activated charcoal to detoxify and nourish the skin dermis.</p>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="philosophy-card">
+          <div class="philosophy-icon">
+            <i class="fa-solid fa-wind"></i>
+          </div>
+          <h3 class="philosophy-card-title">True Aromatherapy</h3>
+          <p class="philosophy-card-desc">Scented purely with steam-distilled essential oils like tea tree, lavender, and lemongrass. Free from synthetic chemicals and artificial fragrances.</p>
+        </div>
+      </div>
     </div>
-
-    <!-- WHATSAPP FLOATING HUB -->
-    <a href="https://wa.me/919744959412?text=Hello%20Avenya!" target="_blank" class="whatsapp-float">
-        <svg class="wa-svg-icon" style="width:30px; height:30px;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112zM17.16 14.8c-.303-.152-1.794-.885-2.072-.986-.278-.101-.481-.152-.682.152-.201.304-.777.986-.953 1.189-.177.203-.354.228-.658.076-.304-.152-1.283-.473-2.443-1.508-.903-.805-1.512-1.8-1.689-2.104-.177-.304-.019-.468.133-.619.136-.136.304-.354.455-.532.152-.177.202-.304.304-.506.101-.203.051-.38-.025-.532-.076-.152-.682-1.644-.934-2.253-.245-.59-.495-.51-.682-.51-.177-.001-.38-.001-.582-.001-.202 0-.531.076-.81.38-.278.304-1.062 1.039-1.062 2.532s1.088 2.937 1.239 3.14c.152.203 2.14 3.268 5.184 4.579.724.312 1.29.499 1.731.639.728.231 1.39.198 1.914.12.584-.087 1.794-.734 2.047-1.443.253-.71.253-1.317.177-1.443-.076-.127-.278-.203-.582-.355z"/></svg>
-    </a>
-
-    <footer>
-        <p class="sans-serif">© 2026 AVENYA LUXURY STUDIO. Engineered for True Skincare.</p>
-    </footer>
-
-    <!-- INTERACTIVE STUDIO SYSTEM ENGINE -->
-    <script>
-        const PRODUCTS = [
-            {
-                id: "sage-oat",
-                name: "French Sage & Oat Woodbar",
-                price: "450",
-                desc: "An earthy, highly restorative exfoliating soap bar formulated with crushed wild French sage leaves and steel-cut organic oats to deeply clarify texturized skin profiles.",
-                images: [
-                    "https://images.unsplash.com/photo-1605264964528-06403738d6dc?auto=format&fit=crop&w=700&q=80",
-                    "https://images.unsplash.com/photo-1607006342456-ba275cd34840?auto=format&fit=crop&w=700&q=80",
-                    "https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=700&q=80"
-                ],
-                composition: "Saponified Virgin Olive Oil, French Sage Hydrosol, Rolled Wild Oats, Shea Butter Extract.",
-                weight: "140g e",
-                usage: "Lather well over damp body skin. Safe for sensory daily bathing. Keep dry between washes to extend performance."
-            },
-            {
-                id: "rose-clay",
-                name: "Rose Ivory Clay Block",
-                price: "490",
-                desc: "Infused with cold-pressed damask rose water systems and superfine Italian white kaolin clay blocks to delicately lift impurities while locking moisture layers.",
-                images: [
-                    "https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&w=700&q=80",
-                    "https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=700&q=80",
-                    "https://images.unsplash.com/photo-1620418029653-8b1e067160fc?auto=format&fit=crop&w=700&q=80"
-                ],
-                composition: "Sweet Almond Oil, White Rose Distillate, Ivory Kaolin Mineral Mud, Jojoba Oil Core.",
-                weight: "145g e",
-                usage: "Massage gently onto your face or body. Leave the creamy lather on for 30 seconds before rinsing for optimal mineral absorbency."
-            },
-            {
-                id: "charcoal-mint",
-                name: "Activated Carbon Element",
-                price: "470",
-                desc: "Hard-drawing active activated bamboo charcoal particles engineered alongside fresh crushed spearmint infusions to deep cleanse pore networks.",
-                images: [
-                    "https://images.unsplash.com/photo-1620418029653-8b1e067160fc?auto=format&fit=crop&w=700&q=80",
-                    "https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=700&q=80",
-                    "https://images.unsplash.com/photo-1605264964528-06403738d6dc?auto=format&fit=crop&w=700&q=80"
-                ],
-                composition: "Steam Activated Bamboo Charcoal, Pure Tea Tree Essence, Organic Mint Crystals.",
-                weight: "150g e",
-                usage: "Perfect for deep cleansing oily or acne-prone skin profiles. Use daily on targeted zones or completely across the body."
-            }
-        ];
-
-        let cartCount = 0;
-
-        function switchView(viewId) {
-            document.querySelectorAll('.app-view').forEach(v => v.classList.remove('visible-view'));
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active-nav'));
-
-            const target = document.getElementById('view-' + viewId);
-            if (target) {
-                target.classList.add('visible-view');
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            }
-
-            const currentNav = document.getElementById('link-' + (viewId === 'pdp' ? 'shop' : viewId));
-            if (currentNav) currentNav.classList.add('active-nav');
-        }
-
-        function renderCatalog() {
-            const grid = document.getElementById('main-catalog-grid');
-            grid.innerHTML = "";
-            
-            PRODUCTS.forEach(product => {
-                const card = document.createElement('div');
-                card.className = "product-card";
-                card.onclick = () => viewProductDetail(product.id);
-                
-                card.innerHTML = `
-                    <div class="product-img-holder">
-                        <img src="${product.images[0]}" alt="${product.name}" class="product-img">
-                    </div>
-                    <div class="product-meta">
-                        <h3 class="product-title">${product.name}</h3>
-                        <span class="product-price">₹${product.price}</span>
-                    </div>
-                    <p class="product-desc">${product.desc}</p>
-                    <button class="btn-luxury" style="padding: 0.8rem 2rem; font-size:0.75rem;">Explore Notes</button>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function viewProductDetail(productId) {
-            const product = PRODUCTS.find(p => p.id === productId);
-            if (!product) return;
-
-            const container = document.getElementById('dynamic-pdp-content');
-            container.innerHTML = `
-                <!-- LEFT GALLERY COLUMN -->
-                <div class="pdp-gallery-layout">
-                    <div class="thumb-column">
-                        ${product.images.map((img, index) => `
-                            <img src="${img}" class="thumb-img ${index === 0 ? 'active-thumb' : ''}" onclick="swapPdpImage(this, '${img}')" alt="Preview">
-                        `).join('')}
-                    </div>
-                    <div class="main-pdp-img-holder">
-                        <img src="${product.images[0]}" id="master-pdp-frame" alt="${product.name}" class="main-pdp-img">
-                    </div>
-                </div>
-
-                <!-- RIGHT PREMIUM RETAIL DETAILS INTERFACE -->
-                <div class="pdp-details-layout">
-                    <span class="pdp-brand-tag">Avenya Luxury Botanics</span>
-                    <h2 class="pdp-title">${product.name}</h2>
-                    
-                    <div class="pdp-price-row">
-                        <span>₹${product.price}.00</span>
-                        <span class="pdp-tax-notice">Inclusive of all taxes</span>
-                    </div>
-
-                    <div class="product-highlights-ribbon">
-                        <span class="highlight-pill">Handcrafted in India</span>
-                        <span class="highlight-pill">100% Vegan</span>
-                        <span class="highlight-pill">Zero Waste Philosophy</span>
-                        <span class="highlight-pill">Net Weight: ${product.weight}</span>
-                    </div>
-
-                    <!-- QUANTITY SELECTOR & RETROFIT CALL BUTTONS -->
-                    <div class="quantity-purchase-block">
-                        <div class="quantity-selector">
-                            <button class="qty-btn" onclick="updateQtySelector(-1)">−</button>
-                            <input type="text" class="qty-input" id="pdp-qty-counter" value="1" readonly>
-                            <button class="qty-btn" onclick="updateQtySelector(1)">+</button>
-                        </div>
-                        
-                        <div class="action-button-group" style="flex: 1; display: flex; gap: 1rem;">
-                            <button class="btn-cart" onclick="addToCartEngine()">Add To Cart</button>
-                            <button class="btn-buy-now" onclick="dispatchOrder('${product.name}', '₹${product.price}')">
-                                <svg class="wa-svg-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112z"/></svg>
-                                Order via WhatsApp
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- ACCORDION BLOCKS -->
-                    <div class="info-accordion">
-                        <div class="accordion-item">
-                            <button class="accordion-header" onclick="toggleAccordionFrame(this)">
-                                <span>Description</span>
-                                <span class="acc-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>${product.desc} Every single element has been aged naturally for 6 weeks under strict monitored laboratory settings to provide a creamy, skin-enriching lather profile.</p>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <button class="accordion-header" onclick="toggleAccordionFrame(this)">
-                                <span>Ingredients & Botanics</span>
-                                <span class="acc-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>${product.composition}</p>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <button class="accordion-header" onclick="toggleAccordionFrame(this)">
-                                <span>How To Use</span>
-                                <span class="acc-icon">+</span>
-                            </button>
-                            <div class="accordion-content">
-                                <p>${product.usage}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            switchView('pdp');
-        }
-
-        function swapPdpImage(thumbElement, imageSrc) {
-            document.getElementById('master-pdp-frame').src = imageSrc;
-            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
-            thumbElement.classList.add('active-thumb');
-        }
-
-        // ACCORDION TOGGLE FUNCTIONS
-        function toggleAccordionFrame(buttonElement) {
-            const content = buttonElement.nextElementSibling;
-            const icon = buttonElement.querySelector('.acc-icon');
-            
-            if (content.style.maxHeight && content.style.maxHeight !== "0px") {
-                content.style.maxHeight = "0px";
-                icon.innerText = "+";
-            } else {
-                // Collapse any currently open accordions first
-                document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = "0px");
-                document.querySelectorAll('.acc-icon').forEach(i => i.innerText = "+");
-                
-                content.style.maxHeight = content.scrollHeight + "px";
-                icon.innerText = "−";
-            }
-        }
-
-        // QUANTITY CONTROLLERS
-        function updateQtySelector(changeValue) {
-            const input = document.getElementById('pdp-qty-counter');
-            let currentQty = parseInt(input.value) || 1;
-            currentQty += changeValue;
-            if (currentQty < 1) currentQty = 1;
-            input.value = currentQty;
-        }
-
-        function addToCartEngine() {
-            const quantity = parseInt(document.getElementById('pdp-qty-counter').value) || 1;
-            cartCount += quantity;
-            document.getElementById('cart-counter').innerText = cartCount;
-            alert(`Added ${quantity} item(s) to your shopping bag.`);
-        }
-
-        function dispatchOrder(name, cost) {
-            const quantity = document.getElementById('pdp-qty-counter').value;
-            const clearMessage = encodeURIComponent(`Hello Avenya Luxury Studio! I would love to order (${quantity}x) of your handcrafted "${name}" listed at ${cost} each.`);
-            window.open(`https://wa.me/919744959412?text=${clearMessage}`, '_blank');
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            renderCatalog();
-        });
-    </script>
+  </section>
+  <!-- Collection / Shop Section -->
+  <section class="shop-section" id="shop">
+    <div class="section-container">
+      <div class="section-intro">
+        <p class="section-tagline">Artisanal Bar Soaps</p>
+        <h2 class="section-title">The <span>Avenya</span> Collection</h2>
+      </div>
+      
+      <!-- Filter Bar -->
+      <div class="shop-filter-bar">
+        <button class="filter-btn active" data-filter="all">All Bars</button>
+        <button class="filter-btn" data-filter="hydrating">Hydrating</button>
+        <button class="filter-btn" data-filter="detoxifying">Detoxifying</button>
+        <button class="filter-btn" data-filter="soothing">Soothing</button>
+      </div>
+      
+      <!-- Product Grid -->
+      <div class="product-grid" id="product-grid-container">
+        <!-- Products will be dynamically populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+  <!-- Instagram Social Call to Action -->
+  <section class="cta-instagram">
+    <div class="section-container">
+      <p class="section-tagline">Follow Our Journey</p>
+      <h2 class="section-title" style="margin-bottom: 20px;">@AvenyaBotanicals</h2>
+      <p style="color: var(--color-text-muted); max-width: 500px; margin: 0 auto; font-weight: 300;">Step into our slow, natural curing rooms. Share your rituals using the hashtag #AvenyaRitual.</p>
+      
+      <div class="insta-gallery">
+        <div class="insta-item">
+          <img src="assets/soap_sage.jpg" alt="Botanical Soap Curing">
+          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="insta-item">
+          <img src="assets/soap_lavender.jpg" alt="Oatmeal Milk Soap Textures">
+          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="insta-item">
+          <img src="assets/soap_charcoal.jpg" alt="Raw Volcanic Soap Detail">
+          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="insta-item">
+          <img src="assets/soap_rose.jpg" alt="Rose Clay Petals Soap bar">
+          <div class="insta-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer Section -->
+  <footer id="footer">
+    <div class="footer-grid">
+      <!-- Footer Brand Column -->
+      <div>
+        <a href="#" class="footer-logo">Avenya<span>.</span></a>
+        <p class="footer-desc">Crafting slow-made, premium organic skincare products to reconnect your self-care rituals back with the natural world.</p>
+      </div>
+      
+      <!-- Footer Links Column -->
+      <div>
+        <h4 class="footer-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#shop">Shop Soap Bars</a></li>
+          <li><a href="#footer">Contact Details</a></li>
+        </ul>
+      </div>
+      
+      <!-- Footer Legal Column -->
+      <div>
+        <h4 class="footer-title">Inquiries</h4>
+        <ul class="footer-links">
+          <li><a href="#footer">Custom Corporate Gifting</a></li>
+          <li><a href="#footer">Wholesale Orders</a></li>
+          <li><a href="#footer">Shipping & Returns</a></li>
+          <li><a href="#footer">Ingredients Glossary</a></li>
+        </ul>
+      </div>
+      
+      <!-- Footer Contact Column -->
+      <div>
+        <h4 class="footer-title">Apothecary Studio</h4>
+        <div class="footer-info-row">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Avenya Labs, Botanical Estate,<br>Cochin, Kerala, India</span>
+        </div>
+        <div class="footer-info-row">
+          <i class="fa-solid fa-phone"></i>
+          <span>+91 9744959412</span>
+        </div>
+        <div class="footer-info-row">
+          <i class="fa-solid fa-envelope"></i>
+          <span>studio@avenya.com</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Avenya Botanicals. All Rights Reserved.</p>
+      <p>Luxury Artisanal Skincare.</p>
+    </div>
+  </footer>
+  <!-- Shopping Cart Side Drawer -->
+  <div class="cart-overlay" id="cart-drawer-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer-panel">
+    <div class="cart-header">
+      <h3 class="cart-header-title">Your Basket</h3>
+      <button class="btn-close-cart" id="cart-close-btn" aria-label="Close Cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    
+    <!-- Cart Items List Container -->
+    <div class="cart-items-list" id="cart-items-container">
+      <!-- Populated dynamically via JS -->
+    </div>
+    
+    <!-- Cart Footer Summary & Checkout -->
+    <div class="cart-footer">
+      <div class="cart-subtotal-row">
+        <span class="subtotal-label">Subtotal</span>
+        <span class="subtotal-price" id="cart-subtotal-val">₹0.00</span>
+      </div>
+      <button class="btn-checkout-whatsapp" id="checkout-whatsapp-btn">
+        <i class="fa-brands fa-whatsapp"></i> Inquire via WhatsApp
+      </button>
+    </div>
+  </div>
+  <!-- Product Detail Modal Overlay -->
+  <div class="detail-modal-overlay" id="product-detail-modal">
+    <div class="detail-modal-container">
+      <button class="btn-close-modal" id="modal-close-btn" aria-label="Close Details">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <!-- Modal Left: Product Image -->
+      <div class="modal-visual">
+        <img src="" alt="" id="modal-product-image">
+      </div>
+      
+      <!-- Modal Right: Product Details -->
+      <div class="modal-content">
+        <p class="modal-category" id="modal-product-category"></p>
+        <h3 class="modal-title" id="modal-product-title"></h3>
+        <p class="modal-price" id="modal-product-price"></p>
+        <p class="modal-desc" id="modal-product-desc"></p>
+        
+        <div class="modal-details">
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Key Benefits:</span>
+            <span class="modal-detail-value" id="modal-product-benefits"></span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Skin Type:</span>
+            <span class="modal-detail-value" id="modal-product-skin"></span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Weight:</span>
+            <span class="modal-detail-value" id="modal-product-weight">120g e</span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Ingredients:</span>
+            <span class="modal-detail-value" id="modal-product-ingredients" style="font-style: italic; font-size: 0.8rem;"></span>
+          </div>
+        </div>
+        
+        <div class="modal-actions">
+          <button class="btn-luxury-primary" id="modal-add-to-cart" style="width: 100%; text-align: center;">
+            Add to Basket
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Permanent Floating WhatsApp Enquiry Badge -->
+  <div class="whatsapp-badge" id="floating-whatsapp-badge" role="button" aria-label="WhatsApp Inquiry">
+    <div class="whatsapp-badge-icon">
+      <i class="fa-brands fa-whatsapp"></i>
+    </div>
+    <span class="whatsapp-badge-text">Inquire with Avenya</span>
+  </div>
+  <!-- Custom JavaScript Logic -->
+  <script src="app.js"></script>
 </body>
 </html>
