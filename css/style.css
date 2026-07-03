@@ -4,10 +4,15 @@
     --dark-gold: #A67C39;
     --olive: #8B9A78;
     --text: #232323;
-    --transition: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --transition: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    letter-spacing: 0.5px;
+}
 
 body {
     background-color: var(--bg);
@@ -21,73 +26,146 @@ body {
 h1, h2 { font-family: 'Playfair Display', serif; font-weight: 400; }
 .italic { font-style: italic; color: var(--dark-gold); }
 
-/* Navigation */
+/* --- NAVIGATION HEADER FIX --- */
 .navbar {
-    padding: 30px 5%;
+    padding: 24px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
+    background: rgba(255, 253, 248, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(214, 179, 106, 0.1);
 }
 
-.logo { font-size: 1.5rem; letter-spacing: 4px; font-weight: 700; }
+.logo { 
+    font-size: 1.4rem; 
+    letter-spacing: 4px; 
+    font-weight: 600; 
+    color: var(--text);
+}
 
-/* Buttons */
+/* Fixes the vertical bullet list */
+.nav-links {
+    display: flex;
+    list-style: none; /* Removes the ugly bullet points */
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 400;
+    transition: color 0.3s var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* --- LUXURY BUTTON ELEVATION --- */
+button {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s var(--transition);
+}
+
+/* The Premium Solid Gold Button */
 .btn-gold {
-    padding: 12px 30px;
+    padding: 14px 28px;
     background: var(--gold);
     color: white;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s var(--transition);
+    border: 1px solid var(--gold);
+    border-radius: 4px; /* Crisp, clean, minimalist curve */
+    box-shadow: 0 4px 15px rgba(214, 179, 106, 0.15);
 }
 
-.btn-gold:hover { background: var(--dark-gold); transform: translateY(-2px); }
+.btn-gold:hover { 
+    background: var(--dark-gold); 
+    border-color: var(--dark-gold);
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 25px rgba(166, 124, 57, 0.25);
+}
 
-/* Hero Section */
+/* The Minimalist Ghost Button (Fixes the ugly browser default box) */
+.btn-ghost {
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(35, 35, 35, 0.15);
+    border-radius: 4px;
+}
+
+.btn-ghost:hover {
+    background: var(--text);
+    color: #FFFFFF;
+    border-color: var(--text);
+    transform: translateY(-2px);
+}
+
+/* --- HERO SECTION LAYOUT CONFIGURATION --- */
 .hero {
-    height: 90vh;
+    min-height: 85vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.12fr 0.88fr;
     align-items: center;
-    padding: 0 10%;
+    padding: 40px 8%;
+    gap: 60px;
 }
 
-.hero-content h1 { font-size: 5rem; line-height: 1.1; }
+.hero-content {
+    max-width: 560px;
+}
+
+.tagline {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.hero-content h1 { 
+    font-size: 4.5rem; 
+    line-height: 1.1; 
+    margin-bottom: 24px;
+}
+
+.hero-content p {
+    font-size: 15px;
+    color: rgba(35, 35, 35, 0.7);
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
 
 .floating-card {
-    width: 400px;
-    height: 500px;
-    background: #E8E2D6;
-    border-radius: 20px;
-    box-shadow: 0 40px 60px rgba(0,0,0,0.1);
-    transition: transform 0.6s var(--transition);
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #EFECE3 0%, #E6DEC9 100%);
+    border-radius: 24px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.08);
+    transition: transform 0.8s var(--transition);
 }
 
-.floating-card:hover { transform: translateY(-20px); }
-
-/* Product Grid */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    padding: 50px 10%;
-}
-
-.product-card {
-    padding: 20px;
-    background: white;
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: all 0.5s ease;
-}
-
-.product-card:hover { border-color: var(--gold); }
-
-.img-container {
-    height: 350px;
-    background: #F0EDE5;
-    margin-bottom: 20px;
+.hero:hover .floating-card { 
+    transform: translateY(-10px) rotate(1deg); 
 }
