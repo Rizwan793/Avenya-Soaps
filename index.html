@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVENYA SOAPS | Haute Botanics & Handcrafted Luxury</title>
+    <title>AVENYA SOAPS | The Art of Pure Bathing</title>
     <style>
-        /* --- RESET & LUXURY TYPOGRAPHY --- */
+        /* --- GLOBAL LUXURY ARCHITECTURE --- */
         * {
             margin: 0;
             padding: 0;
@@ -14,7 +14,7 @@
         }
 
         body {
-            background-color: #fbfbfa;
+            background: linear-gradient(180deg, #fbfbfa 0%, #f7f5f0 50%, #f2f5f1 100%);
             color: #2e2c29;
             overflow-x: hidden;
             scroll-behavior: smooth;
@@ -24,43 +24,46 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #8c857b;
         }
 
-        /* --- PREMIER NAVIGATION BAR WITH ULTRA SHADOWS --- */
+        /* --- PREMIER FIXED NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 8%;
+            padding: 1.5rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(251, 251, 250, 0.9);
-            backdrop-filter: blur(20px);
+            background-color: rgba(251, 251, 250, 0.85);
+            backdrop-filter: blur(25px);
             z-index: 10000;
-            box-shadow: 0 4px 30px rgba(140, 133, 123, 0.04), 0 1px 0px rgba(140, 133, 123, 0.08);
-            transition: all 0.5s ease;
+            box-shadow: 0 4px 40px rgba(140, 133, 123, 0.03);
+            border-bottom: 1px solid rgba(140, 133, 123, 0.06);
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 400;
             letter-spacing: 6px;
             cursor: pointer;
+            transition: transform 0.4s ease;
         }
+        .logo:hover { transform: scale(1.02); }
 
         .nav-links {
             display: flex;
-            gap: 3rem;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-item {
             text-decoration: none;
             cursor: pointer;
             position: relative;
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
             transition: color 0.3s ease;
         }
 
@@ -79,14 +82,24 @@
             width: 100%;
         }
 
-        /* --- APP VIEW CONTAINER SYSTEM --- */
+        .cart-count-badge {
+            background-color: #727d6b;
+            color: white;
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            margin-left: 4px;
+            font-family: sans-serif;
+        }
+
+        /* --- SINGLE PAGE APP VIEW SYSTEM --- */
         .app-view {
             display: none;
             min-height: 100vh;
-            padding-top: 80px; /* Accounts for fixed nav */
+            padding-top: 80px;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(15px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .app-view.visible-view {
@@ -95,230 +108,197 @@
             transform: translateY(0);
         }
 
-        /* --- IMMERSIVE SCROLL REVEAL MECHANIC --- */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .delay-1 { transition-delay: 0.2s; }
-
-        /* --- VIEW 1: HOME PAGE --- */
+        /* --- VIEW 1: HOME PAGE WITH ADVANCED HERO LAYER --- */
         .hero-section {
-            min-height: 95vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
             padding: 0 8%;
-            background: linear-gradient(135deg, #f9f6f0 0%, #fbfbfa 50%, #f4fcf5 100%);
-            gap: 4rem;
+            position: relative;
+            background-image: linear-gradient(to right, rgba(251,251,250,0.95) 40%, rgba(251,251,250,0.2) 100%), 
+                              url('https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=1800&q=80');
+            background-size: cover;
+            background-position: center right;
+            overflow: hidden;
         }
 
         .hero-text {
-            flex: 1;
-            max-width: 550px;
+            max-width: 600px;
+            position: relative;
+            z-index: 10; /* Ensures buttons sit securely over background imagery */
         }
 
         .hero-text h1 {
-            font-size: 4.2rem;
+            font-size: 4.5rem;
             font-weight: 300;
             line-height: 1.15;
-            margin: 1.5rem 0 2rem 0;
+            margin: 1.5rem 0;
             letter-spacing: -1px;
         }
 
         .hero-text h1 span {
             font-style: italic;
-            color: #727d6b;
+            color: #636d5d;
         }
 
         .hero-text p {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             line-height: 1.8;
-            color: #635f59;
+            color: #514e49;
             margin-bottom: 3rem;
         }
 
-        .hero-image-wrapper {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-img {
-            width: 100%;
-            max-width: 480px;
-            height: 580px;
-            object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 0 30px 70px rgba(46, 44, 41, 0.08), 0 10px 20px rgba(46, 44, 41, 0.04);
-        }
-
-        /* Ambient glowing background spotlight shadow behind product */
-        .hero-spotlight {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(114, 125, 107, 0.12);
-            filter: blur(80px);
-            z-index: -1;
-            border-radius: 50%;
-        }
-
-        /* Editorial Split Blocks */
-        .editorial-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8rem;
-            padding: 12rem 8%;
-            align-items: center;
-            background-color: #f5f3ee;
-        }
-
-        .split-img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.04);
-        }
-
-        .editorial-text h2 {
-            font-size: 2.8rem;
-            font-weight: 300;
-            margin: 1.5rem 0;
-        }
-
-        .editorial-text p {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: #5c5852;
-            margin-bottom: 2.5rem;
-        }
-
-        /* --- VIEW 2: LUXURY E-COMMERCE SHOP GRID --- */
-        .shop-container {
-            padding: 4rem 8% 10rem 8%;
-        }
-
-        .shop-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .shop-header h2 {
-            font-size: 3rem;
-            font-weight: 300;
-            margin-top: 1rem;
-        }
+        /* --- VIEW 2: PRODUCT GALLERY & DISCOVERY GRID --- */
+        .shop-container { padding: 5rem 6% 10rem 6%; }
+        .center-header { text-align: center; margin-bottom: 5rem; }
+        .center-header h2 { font-size: 3.2rem; font-weight: 300; margin-top: 0.8rem; }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
         }
 
+        /* Floating Interactive Product Frame */
         .product-card {
-            background: #ffffff;
-            border-radius: 6px;
-            padding: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.01), 0 15px 35px rgba(140, 133, 123, 0.05);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(140, 133, 123, 0.05);
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(140, 133, 123, 0.04);
+            border: 1px solid rgba(255,255,255,0.7);
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(140, 133, 123, 0.12);
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(140, 133, 123, 0.15);
+            background: #ffffff;
         }
 
         .product-img-holder {
             width: 100%;
-            height: 320px;
+            height: 350px;
             overflow: hidden;
-            border-radius: 4px;
+            border-radius: 6px;
             margin-bottom: 1.5rem;
-            background-color: #fbfbfa;
+            position: relative;
         }
 
         .product-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s ease;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-card:hover .product-img {
-            transform: scale(1.06);
+            transform: scale(1.08);
         }
 
         .product-meta {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
-        .product-title {
-            font-size: 1.4rem;
-            font-weight: 400;
-        }
-
-        .product-price {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.1rem;
-            color: #5c5852;
-            font-weight: 500;
-        }
-
+        .product-title { font-size: 1.5rem; font-weight: 400; letter-spacing: 0.5px; }
+        .product-price { font-family: -apple-system, sans-serif; font-size: 1.2rem; font-weight: 500; color: #5c5852; }
+        
         .product-desc {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 0.9rem;
-            color: #7c756c;
-            line-height: 1.5;
+            font-family: -apple-system, sans-serif;
+            font-size: 0.92rem;
+            color: #726c64;
+            line-height: 1.6;
             margin-bottom: 1.5rem;
             flex-grow: 1;
         }
 
-        /* --- VIEW 3: ABOUT CULT PAGE --- */
-        .about-container {
-            max-width: 900px;
+        /* --- VIEW 3: DEEP DIVE DYNAMIC PRODUCT DETAILS PAGE (PDP) --- */
+        .pdp-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 6rem 8% 12rem 8%;
-            text-align: center;
+            padding: 5rem 6% 10rem 6%;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 6rem;
+            align-items: start;
         }
 
-        .about-container h2 {
-            font-size: 3.5rem;
-            font-weight: 300;
-            margin: 1.5rem 0 3rem 0;
+        .pdp-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .about-story-p {
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 1.25rem;
-            line-height: 2;
-            color: #4e4a43;
+        .main-pdp-img-holder {
+            width: 100%;
+            height: 550px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 25px 55px rgba(0,0,0,0.06);
+        }
+
+        .main-pdp-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .main-pdp-img:hover { transform: scale(1.05); }
+
+        .thumb-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .thumb-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            opacity: 0.6;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .thumb-img.active-thumb, .thumb-img:hover {
+            opacity: 1;
+            border-color: #727d6b;
+            transform: translateY(-2px);
+        }
+
+        .pdp-details h2 { font-size: 3.2rem; font-weight: 300; margin: 1rem 0; }
+        .pdp-price { font-family: -apple-system, sans-serif; font-size: 1.8rem; font-weight: 400; margin-bottom: 2rem; color: #44413d; }
+        .pdp-story { font-family: -apple-system, sans-serif; font-size: 1.1rem; line-height: 1.8; color: #5c5852; margin-bottom: 2.5rem; }
+        
+        .pdp-meta-box {
+            border-top: 1px solid rgba(140, 133, 123, 0.15);
+            padding-top: 2rem;
             margin-bottom: 3rem;
-            text-align: justify;
+        }
+        .pdp-meta-item {
+            font-family: -apple-system, sans-serif;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: #6e6961;
         }
 
-        /* --- BUTTON COMPONENT DESIGNS --- */
+        .action-button-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* --- BUTTONS & INTERACTIVE FLOATING STYLES --- */
         .btn-luxury {
             display: inline-block;
-            padding: 1.2rem 2.8rem;
+            padding: 1.2rem 3rem;
             border: 1px solid #3a3835;
             background-color: transparent;
             color: #3a3835;
@@ -327,34 +307,55 @@
             font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
+            border-radius: 4px;
         }
 
         .btn-luxury:hover {
             background-color: #3a3835;
             color: #fbfbfa;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(58, 56, 53, 0.15);
         }
 
-        /* Amazon Style Buy Now WhatsApp Button Trigger */
+        .btn-cart {
+            flex: 1;
+            padding: 1.2rem;
+            background-color: #3a3835;
+            color: white;
+            border: none;
+            font-family: -apple-system, sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .btn-cart:hover {
+            background-color: #242321;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
         .btn-buy-now {
+            flex: 1.2;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.8rem;
             background-color: #128c7e;
             color: #ffffff;
-            padding: 1rem;
+            padding: 1.2rem;
             text-decoration: none;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, sans-serif;
             font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(18, 140, 126, 0.2);
             transition: all 0.4s ease;
             border: none;
             cursor: pointer;
@@ -362,25 +363,25 @@
 
         .btn-buy-now:hover {
             background-color: #0b665c;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(18, 140, 126, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(18, 140, 126, 0.3);
         }
 
-        .wa-btn-icon {
-            width: 18px;
-            height: 18px;
-            fill: #ffffff;
-        }
+        .wa-svg-icon { width: 18px; height: 18px; fill: white; }
 
-        /* GLOBAL FLOATING WHATSAPP BUTTON */
+        /* --- VIEW 4: THE ABOUT SECTION --- */
+        .about-container { max-width: 850px; margin: 0 auto; padding: 6rem 6% 12rem 6%; text-align: center; }
+        .about-container h2 { font-size: 3.4rem; font-weight: 300; margin: 1.5rem 0 3rem 0; }
+        .about-text-p { font-family: -apple-system, sans-serif; font-size: 1.2rem; line-height: 2; color: #4e4a43; margin-bottom: 3rem; text-align: justify; }
+
+        /* FLOATING ACTION PILL */
         .whatsapp-float {
             position: fixed;
             bottom: 40px;
             right: 40px;
             background-color: #128C7E;
-            color: #ffffff;
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -389,216 +390,242 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 99999;
         }
+        .whatsapp-float:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 20px 40px rgba(18, 140, 126, 0.4); }
 
-        .whatsapp-float:hover {
-            transform: scale(1.08) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(18, 140, 126, 0.4);
-        }
+        footer { padding: 4rem 6%; text-align: center; background-color: #f5f3ee; border-top: 1px solid rgba(140, 133, 123, 0.08); }
 
-        .whatsapp-icon-main {
-            width: 30px;
-            height: 30px;
-            fill: #ffffff;
-        }
-
-        /* --- FOOTER REGION --- */
-        footer {
-            padding: 5rem 8%;
-            text-align: center;
-            background-color: #fbfbfa;
-            border-top: 1px solid rgba(140, 133, 123, 0.08);
-        }
-
-        /* RESPONSIVE CSS STYLING OVERRIDES */
+        /* --- ULTRA RESPONSIVE LAYOUT RESPONSES --- */
         @media (max-width: 968px) {
-            .hero-section, .editorial-split {
-                grid-template-columns: 1fr;
-                flex-direction: column;
-                padding: 6rem 8%;
-                gap: 3rem;
-                text-align: center;
-            }
-            .hero-section { justify-content: center; padding-top: 120px; }
-            .hero-text h1 { font-size: 2.8rem; }
-            .split-img { order: -1; }
-            .nav-links { gap: 1.5rem; }
+            .hero-section { background-image: linear-gradient(180deg, rgba(251,251,250,0.96) 60%, rgba(251,251,250,0.4) 100%), url('https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=1200&q=80'); text-align: center; justify-content: center; padding-top: 100px; }
+            .hero-text h1 { font-size: 3rem; }
+            .pdp-container { grid-template-columns: 1fr; gap: 4rem; }
+            .main-pdp-img-holder { height: 400px; }
+            .action-button-group { flex-direction: column; }
+            .nav-links { gap: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HIGH-END APP NAVIGATION BAR -->
+    <!-- APPLICATION CONTROL NAV BAR -->
     <nav>
         <div class="logo" onclick="switchView('home')">AVENYA</div>
         <div class="nav-links sans-serif">
             <span class="nav-item active-nav" id="link-home" onclick="switchView('home')">Home</span>
             <span class="nav-item" id="link-shop" onclick="switchView('shop')">Shop</span>
             <span class="nav-item" id="link-about" onclick="switchView('about')">About</span>
+            <span class="nav-item" style="cursor: default;">Cart<span class="cart-count-badge" id="cart-counter">0</span></span>
         </div>
     </nav>
 
-    <!-- ================= VIEW 1: HOMEPAGE INTERFACE ================= -->
+    <!-- ================= APP VIEW 1: HOME PLATFORM ================= -->
     <div id="view-home" class="app-view visible-view">
         <header class="hero-section">
             <div class="hero-text">
-                <p class="sans-serif">The Haute Botanics Standard</p>
-                <h1>Curating pure, <br><span>living aesthetics.</span></h1>
-                <p>An unmatched curation of cold-milled skincare bars tailored by hand using nutrient-rich botanical pulps and complex earth Clays.</p>
-                <button class="btn-luxury" onclick="switchView('shop')">Enter Shop Engine</button>
-            </div>
-            <div class="hero-image-wrapper">
-                <div class="hero-spotlight"></div>
-                <!-- Premium High-Resolution Soap Aesthetic Frame -->
-                <img src="https://images.unsplash.com/photo-1607006342456-ba275cd34840?auto=format&fit=crop&w=800&q=80" alt="Luxury Soap Bar" class="hero-img">
+                <p class="sans-serif">Haute Botanics & Curing Method</p>
+                <h1>Pure luxury. <br><span>Slowly harvested.</span></h1>
+                <p>An exquisite collection of cold-process organic soap bars handcrafted with nutrient-dense oils, healing botanical flora, and rich raw elements.</p>
+                <button class="btn-luxury" onclick="switchView('shop')">View The Archive</button>
             </div>
         </header>
-
-        <section class="editorial-split">
-            <img src="https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=800&q=80" alt="Botanical Ingredients" class="split-img scroll-reveal">
-            <div class="editorial-text scroll-reveal delay-1">
-                <p class="sans-serif">Meticulous Crafting</p>
-                <h2>Six whole weeks of unhurried curing.</h2>
-                <p>We honor traditional architectural soap making methods. Formulated without synthetic fragrances, heavy foaming additives, or palm-oils, leaving an ultra-dense creamy protective lather to soothe skin layers beautifully.</p>
-                <button class="btn-luxury" onclick="switchView('about')">Discover Our Philosophy</button>
-            </div>
-        </section>
     </div>
 
-    <!-- ================= VIEW 2: HIGH-END COMMERCE INTERFACE ================= -->
+    <!-- ================= APP VIEW 2: PRODUCT EXPLORER CATALOGUE ================= -->
     <div id="view-shop" class="app-view">
         <main class="shop-container">
-            <header class="shop-header">
-                <p class="sans-serif">The Studio Compendium</p>
+            <header class="center-header">
+                <p class="sans-serif">Artisanal Studio Releases</p>
                 <h2>The Handcrafted Collection</h2>
             </header>
 
-            <div class="product-grid">
-                <!-- Soap Unit 1 -->
-                <article class="product-card">
-                    <div class="product-img-holder">
-                        <img src="https://images.unsplash.com/photo-1605264964528-06403738d6dc?auto=format&fit=crop&w=600&q=80" alt="French Sage & Oat Bar" class="product-img">
-                    </div>
-                    <div class="product-meta">
-                        <h3 class="product-title">French Sage & Oat</h3>
-                        <span class="product-price">₹450</span>
-                    </div>
-                    <p class="product-desc">An earthy, lightly exfoliating soap bar formulated with crushed wild sage leaves and organic rolled oats to calm hyper-sensitive skin layers.</p>
-                    <button class="btn-buy-now" onclick="triggerEnquiry('French Sage & Oat Bar', '₹450')">
-                        <svg class="wa-btn-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112z"/></svg>
-                        Buy Now / Enquire
-                    </button>
-                </article>
-
-                <!-- Soap Unit 2 -->
-                <article class="product-card">
-                    <div class="product-img-holder">
-                        <img src="https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&w=600&q=80" alt="White Rose & Ivory Clay Soap" class="product-img">
-                    </div>
-                    <div class="product-meta">
-                        <h3 class="product-title">Rose Ivory Clay</h3>
-                        <span class="product-price">₹490</span>
-                    </div>
-                    <p class="product-desc">Infused with deep steam-distilled damask rose water extract and ultra-fine white kaolin clay blocks for smooth skin tone cleansing.</p>
-                    <button class="btn-buy-now" onclick="triggerEnquiry('Rose Ivory Clay Bar', '₹490')">
-                        <svg class="wa-btn-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112z"/></svg>
-                        Buy Now / Enquire
-                    </button>
-                </article>
-
-                <!-- Soap Unit 3 -->
-                <article class="product-card">
-                    <div class="product-img-holder">
-                        <img src="https://images.unsplash.com/photo-1620418029653-8b1e067160fc?auto=format&fit=crop&w=600&q=80" alt="Activated Charcoal Charcoal Bar" class="product-img">
-                    </div>
-                    <div class="product-meta">
-                        <h3 class="product-title">Activated Charcoal</h3>
-                        <span class="product-price">₹470</span>
-                    </div>
-                    <p class="product-desc">Hard-drawing pure activated carbon blocks blended with steam-pressed tea tree oil designed to clarify, balance oil levels, and deeply refresh pores.</p>
-                    <button class="btn-buy-now" onclick="triggerEnquiry('Activated Charcoal Bar', '₹470')">
-                        <svg class="wa-btn-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112z"/></svg>
-                        Buy Now / Enquire
-                    </button>
-                </article>
+            <div class="product-grid" id="main-catalog-grid">
+                <!-- Loaded Dynamically by script engine below -->
             </div>
         </main>
     </div>
 
-    <!-- ================= VIEW 3: THE ABOUT CULT PAGE ================= -->
+    <!-- ================= APP VIEW 3: DYNAMIC PRODUCT DETAIL INTERFACE (PDP) ================= -->
+    <div id="view-pdp" class="app-view">
+        <main class="pdp-container" id="dynamic-pdp-content">
+            <!-- Populated seamlessly when any card or button triggers navigation -->
+        </main>
+    </div>
+
+    <!-- ================= APP VIEW 4: CULT STORY ARCHIVE ================= -->
     <div id="view-about" class="app-view">
         <main class="about-container">
             <p class="sans-serif">Our Heritage</p>
             <h2>Born out of patience. Driven by botanical truth.</h2>
-            <p class="about-story-p">
+            <p class="about-text-p">
                 AVENYA was founded upon a clear, minimalist realization: modern cleansing processes are fundamentally rushed and over-processed with synthetics. We chose to reject mass industrial machinery to rebuild a luxurious, sensory, skin-first alternative. 
                 <br><br>
                 Every formulation requires six complete weeks to naturally solidify and reach optimal, rich nourishment levels. We curate raw, premium natural ingredients directly from cold-pressed fields. We value clean design, skin harmony, and complete structural transparency above everything else.
             </p>
-            <button class="btn-luxury" onclick="switchView('shop')">Browse Our Full Archive</button>
+            <button class="btn-luxury" onclick="switchView('shop')">Return To Collection</button>
         </main>
     </div>
 
-    <!-- GLOBAL FLOATING WHATSAPP ELEMENT -->
-    <a href="https://wa.me/919744959412?text=Hello%20Avenya%20Soaps!%20I'm%20visiting%20your%20digital%20flagship%20store%20and%20would%20love%20to%20learn%20more%20about%20your%20collections." 
-       target="_blank" 
-       class="whatsapp-float"
-       title="General Concierge Enquiry">
-        <svg class="whatsapp-icon-main" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112zM17.16 14.8c-.303-.152-1.794-.885-2.072-.986-.278-.101-.481-.152-.682.152-.201.304-.777.986-.953 1.189-.177.203-.354.228-.658.076-.304-.152-1.283-.473-2.443-1.508-.903-.805-1.512-1.8-1.689-2.104-.177-.304-.019-.468.133-.619.136-.136.304-.354.455-.532.152-.177.202-.304.304-.506.101-.203.051-.38-.025-.532-.076-.152-.682-1.644-.934-2.253-.245-.59-.495-.51-.682-.51-.177-.001-.38-.001-.582-.001-.202 0-.531.076-.81.38-.278.304-1.062 1.039-1.062 2.532s1.088 2.937 1.239 3.14c.152.203 2.14 3.268 5.184 4.579.724.312 1.29.499 1.731.639.728.231 1.39.198 1.914.12.584-.087 1.794-.734 2.047-1.443.253-.71.253-1.317.177-1.443-.076-.127-.278-.203-.582-.355z"/></svg>
+    <!-- MAIN CONCIERGE CHAT HUB -->
+    <a href="https://wa.me/919744959412?text=Hello%20Avenya%20Soaps!%20I'm%20visiting%20your%20luxury%20digital%20flagship%20store%20and%20would%20love%20to%20consult%20on%20your%20handcrafted%20collections." 
+       target="_blank" class="whatsapp-float" title="General Concierge Line">
+        <svg class="wa-svg-icon" style="width:28px; height:28px;" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112zM17.16 14.8c-.303-.152-1.794-.885-2.072-.986-.278-.101-.481-.152-.682.152-.201.304-.777.986-.953 1.189-.177.203-.354.228-.658.076-.304-.152-1.283-.473-2.443-1.508-.903-.805-1.512-1.8-1.689-2.104-.177-.304-.019-.468.133-.619.136-.136.304-.354.455-.532.152-.177.202-.304.304-.506.101-.203.051-.38-.025-.532-.076-.152-.682-1.644-.934-2.253-.245-.59-.495-.51-.682-.51-.177-.001-.38-.001-.582-.001-.202 0-.531.076-.81.38-.278.304-1.062 1.039-1.062 2.532s1.088 2.937 1.239 3.14c.152.203 2.14 3.268 5.184 4.579.724.312 1.29.499 1.731.639.728.231 1.39.198 1.914.12.584-.087 1.794-.734 2.047-1.443.253-.71.253-1.317.177-1.443-.076-.127-.278-.203-.582-.355z"/></svg>
     </a>
 
-    <!-- STRUCTURAL PLATFORM FOOTER -->
     <footer>
         <p class="sans-serif">© 2026 AVENYA LUXURY STUDIO. Engineered for True Skincare.</p>
     </footer>
 
-    <!-- INTERACTIVE APP VIEW SWAPPING ENGINE -->
+    <!-- INTERACTIVE STUDIO SYSTEM ENGINE -->
     <script>
-        // Smoothly transitions structural layout views instantly inside a single index page
-        function switchView(viewId) {
-            // Hide all views safely
-            const views = document.querySelectorAll('.app-view');
-            views.forEach(v => {
-                v.classList.remove('visible-view');
-            });
-            
-            // Remove active style from navigation bars
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => item.classList.remove('active-nav'));
+        // STUDIO PRODUCT REGISTRY ARCHIVE
+        const PRODUCTS = [
+            {
+                id: "sage-oat",
+                name: "French Sage & Oat",
+                price: "450",
+                desc: "An earthy, highly restorative exfoliating soap bar formulated with crushed wild French sage leaves and steel-cut organic oats to deeply clarify texturized skin profiles.",
+                images: [
+                    "https://images.unsplash.com/photo-1605264964528-06403738d6dc?auto=format&fit=crop&w=700&q=80",
+                    "https://images.unsplash.com/photo-1607006342456-ba275cd34840?auto=format&fit=crop&w=700&q=80",
+                    "https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=700&q=80"
+                ],
+                composition: "Saponified Virgin Olive Oil, French Sage Hydrosol, Rolled Wild Oats, Shea Butter Extract.",
+                weight: "140g e"
+            },
+            {
+                id: "rose-clay",
+                name: "Rose Ivory Clay",
+                price: "490",
+                desc: "Infused with cold-pressed damask rose water systems and superfine Italian white kaolin clay blocks to delicately lift impurities while locking moisture layers.",
+                images: [
+                    "https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&w=700&q=80",
+                    "https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=700&q=80",
+                    "https://images.unsplash.com/photo-1620418029653-8b1e067160fc?auto=format&fit=crop&w=700&q=80"
+                ],
+                composition: "Sweet Almond Oil, White Rose Distillate, Ivory Kaolin Mineral Mud, Jojoba Oil Core.",
+                weight: "145g e"
+            },
+            {
+                id: "charcoal-mint",
+                name: "Activated Carbon",
+                price: "470",
+                desc: "Hard-drawing active activated bamboo charcoal particles engineered alongside fresh crushed spearmint infusions to deep cleanse pore networks.",
+                images: [
+                    "https://images.unsplash.com/photo-1620418029653-8b1e067160fc?auto=format&fit=crop&w=700&q=80",
+                    "https://images.unsplash.com/photo-1546554137-f86b9593a222?auto=format&fit=crop&w=700&q=80",
+                    "https://images.unsplash.com/photo-1605264964528-06403738d6dc?auto=format&fit=crop&w=700&q=80"
+                ],
+                composition: "Steam Activated Bamboo Charcoal, Pure Tea Tree Essence, Organic Mint Crystals.",
+                weight: "150g e"
+            }
+        ];
 
-            // Toggle target view live
-            const selectedView = document.getElementById('view-' + viewId);
-            if(selectedView) {
-                selectedView.classList.add('visible-view');
+        let cartCount = 0;
+
+        // IN-APP VIEW CONTROLLER
+        function switchView(viewId) {
+            document.querySelectorAll('.app-view').forEach(v => v.classList.remove('visible-view'));
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active-nav'));
+
+            const target = document.getElementById('view-' + viewId);
+            if (target) {
+                target.classList.add('visible-view');
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }
 
-            // Highlighting the menu option
-            const activeNav = document.getElementById('link-' + viewId);
-            if(activeNav) {
-                activeNav.classList.add('active-nav');
-            }
+            const currentNav = document.getElementById('link-' + viewId);
+            if (currentNav) currentNav.classList.add('active-nav');
         }
 
-        // Amazon Custom Order Handler targeting individual soap codes seamlessly
-        function triggerEnquiry(productName, price) {
-            const formattedText = encodeURIComponent(`Hello Avenya Soaps! I want to purchase the premium "${productName}" listed at ${price}. Please confirm availability and shipping timelines.`);
-            const whatsappLink = `https://wa.me/919744959412?text=${formattedText}`;
-            window.open(whatsappLink, '_blank');
+        // BUILDING PLATFORM DISCOVERY CATALOG
+        function renderCatalog() {
+            const grid = document.getElementById('main-catalog-grid');
+            grid.innerHTML = "";
+            
+            PRODUCTS.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "product-card";
+                card.onclick = () => viewProductDetail(product.id);
+                
+                card.innerHTML = `
+                    <div class="product-img-holder">
+                        <img src="${product.images[0]}" alt="${product.name}" class="product-img">
+                    </div>
+                    <div class="product-meta">
+                        <h3 class="product-title">${product.name}</h3>
+                        <span class="product-price">₹${product.price}</span>
+                    </div>
+                    <p class="product-desc">${product.desc}</p>
+                    <button class="btn-luxury" style="padding: 0.8rem; font-size:0.75rem;">Explore Curing Notes</button>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        // Intersection Observer Engine for Home Page elements
-        document.addEventListener("DOMContentLoaded", function() {
-            const observerOptions = { root: null, threshold: 0.15 };
-            const revealObserver = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+        // GENERATING DYNAMIC PRODUCT DETAIL PAGES (PDP)
+        function viewProductDetail(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
 
-            document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+            const container = document.getElementById('dynamic-pdp-content');
+            container.innerHTML = `
+                <div class="pdp-gallery">
+                    <div class="main-pdp-img-holder">
+                        <img src="${product.images[0]}" id="master-pdp-frame" alt="${product.name}" class="main-pdp-img">
+                    </div>
+                    <div class="thumb-row">
+                        ${product.images.map((img, index) => `
+                            <img src="${img}" class="thumb-img ${index === 0 ? 'active-thumb' : ''}" onclick="swapPdpImage(this, '${img}')" alt="Angle Preview">
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="pdp-details">
+                    <p class="sans-serif">Studio Collection Batch Edition</p>
+                    <h2>${product.name}</h2>
+                    <div class="pdp-price">₹${product.price} <span style="font-size:1rem; color:#8c857b;">INR</span></div>
+                    <p class="pdp-story">${product.desc}</p>
+                    
+                    <div class="pdp-meta-box">
+                        <div class="pdp-meta-item"><strong>Botanical Base:</strong> ${product.composition}</div>
+                        <div class="pdp-meta-item"><strong>Bar Weight:</strong> ${product.weight}</div>
+                        <div class="pdp-meta-item"><strong>Curing Status:</strong> Verified 6-Weeks Optimal Balance</div>
+                    </div>
+
+                    <div class="action-button-group">
+                        <button class="btn-cart" onclick="addToCartEngine()">Add To Collection Bag</button>
+                        <button class="btn-buy-now" onclick="dispatchOrder('${product.name}', '₹${product.price}')">
+                            <svg class="wa-svg-icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.179.001 6.169 1.24 8.419 3.496 2.25 2.256 3.487 5.253 3.486 8.436-.005 6.557-5.342 11.905-11.91 11.905-2.01-.001-3.988-.509-5.731-1.476L0 24zm6.19-4.73c1.644.976 3.256 1.486 4.774 1.487 5.379 0 9.755-4.381 9.758-9.76.002-2.605-1.013-5.053-2.859-6.904C16.024 2.238 13.58 1.221 11.002 1.22c-5.385 0-9.76 4.382-9.764 9.763-.001 2.115.553 4.184 1.597 5.923l-.1.192-1.008 3.684 3.763-.987.19.112z"/></svg>
+                            Buy / Enquire Now
+                        </button>
+                    </div>
+                </div>
+            `;
+            switchView('pdp');
+        }
+
+        // GALLERY INTERACTIVE SWAP SYSTEM
+        function swapPdpImage(thumbElement, imageSrc) {
+            document.getElementById('master-pdp-frame').src = imageSrc;
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
+            thumbElement.classList.add('active-thumb');
+        }
+
+        // BAG ENGINE INCREMENTER
+        function addToCartEngine() {
+            cartCount++;
+            document.getElementById('cart-counter').innerText = cartCount;
+            alert("Added securely to your luxury collection bag.");
+        }
+
+        // OUTBOUND SECURE CHAT DISPATCHER
+        function dispatchOrder(name, cost) {
+            const clearMessage = encodeURIComponent(`Hello Avenya Luxury Studio! I would love to place a premium order enquiry for your handcrafted "${name}" listed at ${cost}. Kindly verify your courier logs.`);
+            window.open(`https://wa.me/919744959412?text=${clearMessage}`, '_blank');
+        }
+
+        // PLATFORM BOOT EXECUTION RUNNER
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCatalog();
         });
     </script>
 </body>
